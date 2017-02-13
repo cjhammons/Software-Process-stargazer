@@ -2,6 +2,9 @@ import urllib
 
 def convertString2Dictionary(inputString = ""):
     errorDict = {'error':'true'}
+
+    keys = [] #hold copies of existing keys
+
     #decode
     unquoted = urllib.unquote(inputString)
 
@@ -9,26 +12,49 @@ def convertString2Dictionary(inputString = ""):
     if unquoted.__len__() < 3:
         return errorDict
 
-    #split the key and value
-    split = unquoted.split("=")
-    key = split[0].lstrip().strip()
-    value = split[1].lstrip().strip()
+    #split the new entries
+    split = unquoted.split(",")
 
-    #check for valid key and value
-    if len(split) > 2 or len(split) < 2 or key == "" or value == "":
-        return errorDict
+    result = "{"
 
-    result = "{'"
+    #iterate through new entries
+    i = 1
+    for s in split:
+        #split the key and value
+        entry = s.split("=")
 
-    #Key
-    if key[0].isdigit() or key.__contains__(" "):
-        return errorDict
-    result += key
-    result += "':'"
+        if len(entry) < 2:
+            return errorDict
 
-    #value
-    result += value
-    result += "'}"
+        key = entry[0].lstrip().strip()
+        value = entry[1].lstrip().strip()
+
+        #check alphanumeric
+        if not key.isalnum() or not value.isalnum():
+            return errorDict
+
+        #check if key is unique
+        if keys.__contains__(key):
+            return errorDict
+        else:
+            keys.append(key)
+
+        #check for valid key and value
+        if key == "" or value == "":
+            return errorDict
+
+        #Key
+        if key[0].isdigit() or key.__contains__(" "):
+            return errorDict
+        result += "'" + key + "':'"
+
+        #value
+        result += value + "'"
+        if i < split.__len__():
+            result += ","
+        i += 1
+
+    result += "}"
 
     return result
 
