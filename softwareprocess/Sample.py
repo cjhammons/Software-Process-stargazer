@@ -73,6 +73,27 @@ class Sample(object):
             simpsonOld = simpsonNew
             w = (highBound - lowBound) / s
 
+            #line 8 in specs
+            simpsonNew = self.f(self, lowBound, n)
+            wCoefficient = 1
+
+            for i in range(2, s-2):
+                coefficient = 0
+                if (i % 2 == 0): #check if even
+                    coefficient = 4
+                else:
+                    coefficient = 2
+
+                simpsonNew += coefficient * self.f(self, lowBound + wCoefficient * w)
+                wCoefficient += 1
+
+            highboundCoefficient = 0
+            if (s % 2 == 0):
+                highboundCoefficient = 2
+            else:
+                highBound = 4
+            simpsonNew += (highboundCoefficient * self.f(self, highBound - w , n)) + self.f(self, highBound, n)
+            simpsonNew *= (w / 3)
 
             s = s * 2
         return simpsonNew
