@@ -68,7 +68,7 @@ class Sample(object):
         epsilon = 0.001
         simpsonOld = 0.0
         simpsonNew = epsilon
-        s = 16
+        s = 4
         while abs((simpsonNew - simpsonOld) / simpsonNew) > epsilon:
             simpsonOld = simpsonNew
             w = (highBound - lowBound) / s
