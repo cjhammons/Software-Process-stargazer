@@ -74,7 +74,7 @@ class Sample(object):
             w = (highBound - lowBound) / s
 
             #line 8 in specs
-            simpsonNew = self.f(self, lowBound, n)
+            simpsonNew = self.f(lowBound, n)
             wCoefficient = 1
 
             for i in range(2, s-2):
