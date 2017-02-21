@@ -84,7 +84,7 @@ class Sample(object):
                 else:
                     coefficient = 2
 
-                simpsonNew += coefficient * self.f(self, lowBound + wCoefficient * w)
+                simpsonNew += coefficient * self.f(lowBound + wCoefficient * w)
                 wCoefficient += 1
 
             highboundCoefficient = 0
@@ -92,7 +92,7 @@ class Sample(object):
                 highboundCoefficient = 2
             else:
                 highBound = 4
-            simpsonNew += (highboundCoefficient * self.f(self, highBound - w , n)) + self.f(self, highBound, n)
+            simpsonNew += (highboundCoefficient * self.f(highBound - w , n)) + self.f(highBound, n)
             simpsonNew *= (w / 3)
 
             s = s * 2
