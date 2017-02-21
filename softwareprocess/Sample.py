@@ -65,7 +65,7 @@ class Sample(object):
         return result
     
     def integrate(self, lowBound, highBound, n, f):
-        epsilon = 0.009
+        epsilon = 0.0009
         simpsonOld = 0.0
         simpsonNew = epsilon
         s = 16
@@ -73,10 +73,10 @@ class Sample(object):
             simpsonOld = simpsonNew
             w = (highBound - lowBound) / s
 
-            #line 8 in specs
+            #Do initial lowbound term
             simpsonNew = self.f(lowBound, n)
             wCoefficient = 1
-
+            #rest of lowbound terms
             for i in range(2, s-2):
                 coefficient = 0
                 if (i % 2 == 0): #check if even
@@ -87,6 +87,8 @@ class Sample(object):
                 simpsonNew += coefficient * self.f(lowBound + wCoefficient * w, n)
                 wCoefficient += 1
 
+            #do the highbound terms
+            #first get the coefficient of the first highbound term
             highboundCoefficient = 0
             if (s % 2 == 0):
                 highboundCoefficient = 2
