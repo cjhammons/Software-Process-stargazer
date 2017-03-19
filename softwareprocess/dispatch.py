@@ -32,7 +32,7 @@ def dispatch(values=None):
 def adjust(values=None):
     #Observation check
     if (not 'observation' in values):
-        values['error'] = ERROR_INVALID_OBSERVATION
+        values['error'] = ERROR_MANDATORY_INFO_MISSING
         return values
 
     observationRaw = values['observation']
@@ -43,8 +43,10 @@ def adjust(values=None):
     obsSplit = observationRaw.split('d')
     obsDegree = obsSplit[0]
     obsMinute = obsSplit[1]
-    if (obsDegree < 0 or obsDegree > 89
-        or obsMinute < ):
+    if (obsDegree < 0 or obsDegree >= 90
+        or obsMinute < 0.0 or obsMinute >= 60):
+        values['error'] = ERROR_INVALID_OBSERVATION
+        return values
 
 
     return values
