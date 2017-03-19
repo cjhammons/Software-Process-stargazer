@@ -98,15 +98,15 @@ class DispatchTest(unittest.TestCase):
 #Observation param
     def test200_001_Success_ObsLowbound(self):
         result = d.adjust({'op':'adjust','observation':'0d0.0'})
-        self.assert_(not ('error' in result))
+        self.assert_(not (d.ERROR_INVALID_OBSERVATION in result))
 
     def test200_002_Success_ObsNom(self):
         result = d.adjust({'op':'adjust','observation':'45d30.0'})
-        self.assert_(not ('error' in result))
+        self.assert_(not (d.ERROR_INVALID_OBSERVATION in result))
 
     def test200_003_Success_ObsHighbound(self):
         result = d.adjust({'op':'adjust','observation':'89d59.9'})
-        self.assert_(not ('error' in result))
+        self.assert_(not (d.ERROR_INVALID_OBSERVATION in result))
 
 #Sad Path
 #Observation Param
