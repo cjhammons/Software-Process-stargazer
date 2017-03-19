@@ -28,7 +28,7 @@ class DispatchTest(unittest.TestCase):
 #Happy Path
     def test100_001_Success_AdjustOp(self):
         result = d.dispatch({'op':'adjust'})
-        self.assert_(not ('error' in result), "adjust op not recognized")
+        self.assert_(not (d.ERROR_OP_NOT_LEGAL in result), "adjust op not recognized")
 
     def test100_002_Success_PredictOp(self):
         result = d.dispatch({'op':'predict'})
@@ -45,19 +45,19 @@ class DispatchTest(unittest.TestCase):
 #Sad Path
     def test100_100_Error_EmptyDict(self):
         result = d.dispatch({})
-        self.assert_(result['error'] == 'no op is specified')
+        self.assert_(result['error'] == d.ERROR_OP_NOT_SPECIFIED)
 
     def test100_101_Error_NotDict(self):
         result = d.dispatch(42)
-        self.assert_(result['error'] == 'parameter is not a dictionary')
+        self.assert_(result['error'] == d.ERROR_PARAM_NOT_DICTIONARY)
 
     def test100_102_Error_NotValidOp(self):
         result = d.dispatch({'op':'unknown'})
-        self.assert_(result['error'] == 'op is not a legal operation')
+        self.assert_(result['error'] == d.ERROR_OP_NOT_LEGAL)
 
     def test100_103_Error_noDict(self):
         result = d.dispatch()
-        self.assert_(result['error'] == 'dictionary is missing')
+        self.assert_(result['error'] == d.ERROR_DICTIONARY_MISSING)
 
 
 

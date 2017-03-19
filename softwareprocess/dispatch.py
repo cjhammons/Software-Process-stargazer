@@ -4,16 +4,20 @@ ERROR_INVALID_HEIGHT = 'height is invalid'
 ERROR_INVALID_PRESSURE = 'pressure is invalid'
 ERROR_INVALID_HORIZON = 'horizon is invalid'
 ERROR_MANDATORY_INFO_MISSING = 'mandatory information missing'
+ERROR_OP_NOT_LEGAL = 'op is not a legal operation'
+ERROR_OP_NOT_SPECIFIED = 'no op is specified'
+ERROR_PARAM_NOT_DICTIONARY = 'parameter is not a dictionary'
+ERROR_DICTIONARY_MISSING = 'dictionary is missing'
 
 def dispatch(values=None):
 
     #Validate parm
     if(values == None):
-        return {'error': 'dictionary is missing'}
+        return {'error': ERROR_DICTIONARY_MISSING}
     if(not(isinstance(values,dict))):
-        return {'error': 'parameter is not a dictionary'}
+        return {'error': }ERROR_PARAM_NOT_DICTIONARY
     if (not('op' in values)):
-        values['error'] = 'no op is specified'
+        values['error'] = ERROR_OP_NOT_SPECIFIED
         return values
 
     #Perform designated function
@@ -26,7 +30,7 @@ def dispatch(values=None):
     elif(values['op'] == 'locate'):
         return values    #This calculation is stubbed out
     else:
-        values['error'] = 'op is not a legal operation'
+        values['error'] = ERROR_OP_NOT_LEGAL
         return values
 
 def adjust(values=None):
