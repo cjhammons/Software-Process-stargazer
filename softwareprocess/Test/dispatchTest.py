@@ -45,7 +45,7 @@ class DispatchTest(unittest.TestCase):
 #Sad Path
     def test100_010_Error_EmptyDict(self):
         result = d.dispatch({})
-        self.assert_(result['error'] == 'no op specified')
+        self.assert_(result['error'] == 'no op is specified')
 
     def test100_011_Error_NotDict(self):
         result = d.dispatch(42)

@@ -2,7 +2,7 @@ def dispatch(values=None):
 
     #Validate parm
     if(values == None):
-        return {'error': 'parameter is missing'}
+        return {'error': 'dictionary is missing'}
     if(not(isinstance(values,dict))):
         return {'error': 'parameter is not a dictionary'}
     if (not('op' in values)):
