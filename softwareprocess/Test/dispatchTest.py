@@ -53,7 +53,7 @@ class DispatchTest(unittest.TestCase):
 
     def test100_012_Error_NotValidOp(self):
         result = d.dispatch({'op':'unknown'})
-        self.assert_(result['error'] == 'op is not legal operation')
+        self.assert_(result['error'] == 'op is not a legal operation')
 
     def test100_013_Error_noDict(self):
         result = d.dispatch()
