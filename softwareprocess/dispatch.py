@@ -1,3 +1,10 @@
+
+ERROR_INVALID_OBSERVATION = 'observation is invalid'
+ERROR_INVALID_HEIGHT = 'height is invalid'
+ERROR_INVALID_PRESSURE = 'pressure is invalid'
+ERROR_INVALID_HORIZON = 'horizon is invalid'
+ERROR_MANDATORY_INFO_MISSING = 'mandatory information missing'
+
 def dispatch(values=None):
 
     #Validate parm
@@ -11,7 +18,7 @@ def dispatch(values=None):
 
     #Perform designated function
     if(values['op'] == 'adjust'):
-        return values    #<-------------- replace this with your implementation
+        return adjust(values)    #split off into its own function for readability
     elif(values['op'] == 'predict'):
         return values    #This calculation is stubbed out
     elif(values['op'] == 'correct'):
@@ -21,3 +28,6 @@ def dispatch(values=None):
     else:
         values['error'] = 'op is not a legal operation'
         return values
+
+def adjust(values=None):
+    return values
