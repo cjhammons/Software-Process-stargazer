@@ -15,7 +15,7 @@ def dispatch(values=None):
     if(values == None):
         return {'error': ERROR_DICTIONARY_MISSING}
     if(not(isinstance(values,dict))):
-        return {'error': }ERROR_PARAM_NOT_DICTIONARY
+        return {'error': ERROR_PARAM_NOT_DICTIONARY}
     if (not('op' in values)):
         values['error'] = ERROR_OP_NOT_SPECIFIED
         return values
