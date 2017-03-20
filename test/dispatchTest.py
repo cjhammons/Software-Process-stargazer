@@ -180,6 +180,6 @@ class DispatchTest(unittest.TestCase):
         result = d.adjust({'op':'adjust','observation':'0d0.0','pressure':'99'})
         self.assert_(result['error'] == d.ERROR_INVALID_PRESSURE)
 
-     def test200_122_Error_PressureHighboundViolation(self):
-         result = d.adjust({'op': 'adjust', 'observation': '0d0.0','pressure': '1101'})
-         self.assert_(result['error'] == d.ERROR_INVALID_PRESSURE)
+    def test200_122_Error_PressureHighboundViolation(self):
+        result = d.adjust({'op': 'adjust', 'observation': '0d0.0','pressure': '1101'})
+        self.assert_(result['error'] == d.ERROR_INVALID_PRESSURE)

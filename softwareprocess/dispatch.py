@@ -63,6 +63,15 @@ def adjust(values=None):
         values['error'] = ERROR_INVALID_HEIGHT
         return values
 
+    #temperature check
 
+    #pressure check
+    pressure = 1010
+    if (not 'pressure' in values):
+        values['pressure'] = pressure
+    else:
+        pressure = values['pressure']
+
+    if (pressure >)
 
     return values
