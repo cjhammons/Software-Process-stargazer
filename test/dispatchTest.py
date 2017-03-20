@@ -128,6 +128,8 @@ class DispatchTest(unittest.TestCase):
 
     def test200_013_Success_HeightNotGiven(self):
         result = d.adjust({'op':'adjust','observation':'0d0.0'})
+        if('error' in result):
+            self.assert_(result['error'] != d.ERROR_INVALID_HEIGHT)
         self.assert_(result['height'] == '0')
 
 #Pressure param
