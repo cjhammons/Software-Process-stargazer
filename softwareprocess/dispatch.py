@@ -52,5 +52,17 @@ def adjust(values=None):
         values['error'] = ERROR_INVALID_OBSERVATION
         return values
 
+    #height check
+    height = 0
+    if (not 'height' in values):
+        values['height'] = 0
+    else:
+        height = values['height']
+
+    if (height < 0):
+        values['error'] = ERROR_INVALID_HEIGHT
+        return values
+
+
 
     return values

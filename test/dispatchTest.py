@@ -128,10 +128,33 @@ class DispatchTest(unittest.TestCase):
 
     def test200_013_Success_HeightNotGiven(self):
         result = d.adjust({'op':'adjust','observation':'0d0.0'})
+        self.assert_(result['height'] == '0')
+
+#Pressure param
+    def test200_021_Success_PressureLowbound(self):
+        result = d.adjust({'op':'adjust','observation':'0d0.0','pressure':'100'})
         if ('error' in result):
-            self.assert_(result['error'] != d.ERROR_INVALID_HEIGHT)
+            self.assert_(result['error'] != d.ERROR_INVALID_PRESSURE)
         else:
             self.assert_(True)
+
+    def test200_021_Success_PressureNom(self):
+        result = d.adjust({'op': 'adjust', 'observation': '0d0.0', 'pressure': '600'})
+        if ('error' in result):
+            self.assert_(result['error'] != d.ERROR_INVALID_PRESSURE)
+        else:
+            self.assert_(True)
+
+    def test200_021_Success_PressureHighbound(self):
+        result = d.adjust({'op': 'adjust', 'observation': '0d0.0', 'pressure': '1100'})
+        if ('error' in result):
+            self.assert_(result['error'] != d.ERROR_INVALID_PRESSURE)
+        else:
+            self.assert_(True)
+
+    def test200_021_Success_PressureNotGiven(self):
+        result = d.adjust({'op': 'adjust', 'observation': '0d0.0'})
+        self.assert_(result['pressure'] == '1010')
 
 #Sad Path
 #Observation Param
