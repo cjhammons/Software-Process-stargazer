@@ -75,9 +75,11 @@ class DispatchTest(unittest.TestCase):
 #       temperature:    low value        -20
 #                       nom value       60
 #                       high value      120
+#                       missing value
 #       pressure:       low value       100
 #                       nom value       600
 #                       high value      1100
+#                       missing value
 #       horizon:        value1          artificial
 #                       value2          natural
 #                       value3          ArtiFICIal
@@ -87,6 +89,7 @@ class DispatchTest(unittest.TestCase):
 #   Sad Path Analysis:
 #       observation:    low violation   -1d-1.1
 #                       high violation  90d60.0
+#                       missing value
 #       height:         low violation   -1
 #       temp:           low violation   -21
 #                       high violation  121
@@ -107,6 +110,19 @@ class DispatchTest(unittest.TestCase):
     def test200_003_Success_ObsHighbound(self):
         result = d.adjust({'op':'adjust','observation':'89d59.9'})
         self.assert_(not (d.ERROR_INVALID_OBSERVATION in result))
+
+#Height param
+    def test200_010_Success_HeightLowbound(self):
+        result = d.adjust({'op':'adjust','observation':'0d0.0','height':'0'})
+        self.assert_(not (d.ERROR_INVALID_HEIGHT) in result)
+
+    def test200_011_Success_HeightNom(self):
+        result = d.adjust({'op':'adjust','observation':'0d0.0','height':'300'})
+        self.assert_(not (d.ERROR_INVALID_HEIGHT) in result)
+
+    def test200_012_Success_HeightNotGiven(self):
+        result = d.adjust({'op':'adjust','observation':'0d0.0'})
+        self.assert_(result['height'] == '0')
 
 #Sad Path
 #Observation Param

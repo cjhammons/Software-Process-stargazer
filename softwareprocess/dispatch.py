@@ -1,4 +1,4 @@
-
+#Error messages
 ERROR_INVALID_OBSERVATION = 'observation is invalid'
 ERROR_INVALID_HEIGHT = 'height is invalid'
 ERROR_INVALID_PRESSURE = 'pressure is invalid'
