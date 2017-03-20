@@ -174,3 +174,12 @@ class DispatchTest(unittest.TestCase):
     def test200_111_Error_HeightLowboundViolation(self):
         result = d.adjust({'op':'adjust','observation':'0d0.0','height':'-1'})
         self.assert_(result['error'] == d.ERROR_INVALID_HEIGHT)
+
+#Pressure param
+    def test300_121_Error_PressureLowboundViolation(self):
+        result = d.adjust({'op':'adjust','observation':'0d0.0','pressure':'99'})
+        self.assert_(result['error'] == d.ERROR_INVALID_PRESSURE)
+
+     def test200_122_Error_PressureHighboundViolation(self):
+         result = d.adjust({'op': 'adjust', 'observation': '0d0.0','pressure': '1101'})
+         self.assert_(result['error'] == d.ERROR_INVALID_PRESSURE)
