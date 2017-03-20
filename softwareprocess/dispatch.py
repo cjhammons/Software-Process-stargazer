@@ -67,6 +67,9 @@ def adjust(values=None):
         return values
 
     #temperature check
+    temperature = 72
+    if (not 'temperature' in values):
+        values['temperature'] = str(72)
 
     #pressure check
     pressure = 0

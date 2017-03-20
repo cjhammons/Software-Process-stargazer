@@ -171,7 +171,9 @@ class DispatchTest(unittest.TestCase):
         if ('error' in result):
             self.assertNotEqual(result['error'], d.ERROR_INVALID_TEMPERATURE)
         if('temperature' in result):
-            self.assertEqual(result['temperature'], )
+            self.assertEqual(result['temperature'], '72')
+        else:
+            self.assert_(False)
 
 #Pressure param
     def test200_021_Success_PressureLowbound(self):
@@ -220,6 +222,15 @@ class DispatchTest(unittest.TestCase):
     def test200_111_Error_HeightLowboundViolation(self):
         result = d.adjust({'op':'adjust','observation':'0d0.0','height':'-1'})
         self.assert_(result['error'] == d.ERROR_INVALID_HEIGHT)
+
+#Temperature param
+    def test200_131_Error_TemperatureLowboundViolation(self):
+        result = d.adjust({'op': 'adjust', 'observation': '0d0.0', 'temperature': '-21'})
+        self.assertEqual(result['error'], d.ERROR_INVALID_TEMPERATURE)
+
+    def test300_132_Error_TemperatureHighboundViolation(self):
+        result = d.adjust({'op': 'adjust', 'observation': '0d0.0', 'temperature': '121'})
+        self.assertEqual(result['error'], d.ERROR_INVALID_TEMPERATURE)
 
 #Pressure param
     def test300_121_Error_PressureLowboundViolation(self):
