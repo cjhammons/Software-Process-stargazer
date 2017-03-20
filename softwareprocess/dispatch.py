@@ -45,10 +45,12 @@ def adjust(values=None):
         return values
 
     obsSplit = observationRaw.split('d')
-    obsDegree = obsSplit[0]
-    obsMinute = obsSplit[1]
-    if (obsDegree < 0 or obsDegree >= 90
-        or obsMinute < 0.0 or obsMinute >= 60):
+    obsDegree = int(obsSplit[0])
+    obsMinute = float(obsSplit[1])
+    if (obsDegree < 0 or obsDegree >= 90):
+        values['error'] = ERROR_INVALID_OBSERVATION
+        return values
+    if( obsMinute < 0.0 or obsMinute >= 60):
         values['error'] = ERROR_INVALID_OBSERVATION
         return values
 
