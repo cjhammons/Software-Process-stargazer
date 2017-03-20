@@ -130,7 +130,10 @@ class DispatchTest(unittest.TestCase):
         result = d.adjust({'op':'adjust','observation':'0d0.0'})
         if('error' in result):
             self.assert_(result['error'] != d.ERROR_INVALID_HEIGHT)
-        self.assert_(result['height'] == '0')
+        elif ('height' in result):
+            self.assert_(result['height'] == '0')
+        else:
+            self.assert_(False)
 
 #Pressure param
     def test200_021_Success_PressureLowbound(self):
@@ -156,7 +159,10 @@ class DispatchTest(unittest.TestCase):
 
     def test200_021_Success_PressureNotGiven(self):
         result = d.adjust({'op': 'adjust', 'observation': '0d0.0'})
-        self.assert_(result['pressure'] == '1010')
+        if ('pressure' in result):
+            self.assert_(result['pressure'] == '1010')
+        else:
+            self.assert_(False)
 
 #Sad Path
 #Observation Param
@@ -180,6 +186,7 @@ class DispatchTest(unittest.TestCase):
 #Pressure param
     def test300_121_Error_PressureLowboundViolation(self):
         result = d.adjust({'op':'adjust','observation':'0d0.0','pressure':'99'})
+
         self.assert_(result['error'] == d.ERROR_INVALID_PRESSURE)
 
     def test200_122_Error_PressureHighboundViolation(self):

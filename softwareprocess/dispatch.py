@@ -66,9 +66,9 @@ def adjust(values=None):
     #temperature check
 
     #pressure check
-    pressure = 1010
+    pressure = 0
     if (not 'pressure' in values):
-        values['pressure'] = pressure
+        values['pressure'] = 1010
     else:
         pressure = values['pressure']
 
