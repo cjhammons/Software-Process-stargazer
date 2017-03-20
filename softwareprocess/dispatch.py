@@ -96,7 +96,7 @@ def adjust(values=None):
     else:
         horizon = str(values['horizon']).lower()
 
-    if (horizon != 'natural' or horizon != 'artificial'):
+    if (horizon is not 'natural' and horizon is not 'artificial'):
         values['error'] = ERROR_INVALID_HORIZON
         return values
 
