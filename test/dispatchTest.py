@@ -205,35 +205,35 @@ class DispatchTest(unittest.TestCase):
             self.assert_(False)
 
 #horizon param
-    def test200_031_Success_HorizonArtificialLowercase(self):
+    def test200_041_Success_HorizonArtificialLowercase(self):
         result = d.adjust({'op': 'adjust', 'observation': '0d0.0', 'horizon': 'artificial'})
         if('error' in result):
             self.assertNotEqual(result['error'], d.ERROR_INVALID_HORIZON)
         else:
             self.assert_(True)
 
-    def test200_032_Succcess_HorizonNaturalLowercase(self):
+    def test200_042_Succcess_HorizonNaturalLowercase(self):
         result = d.adjust({'op': 'adjust', 'observation': '0d0.0', 'horizon': 'natural'})
         if ('error' in result):
              self.assertNotEqual(result['error'], d.ERROR_INVALID_HORIZON)
         else:
              self.assert_(True)
 
-    def test200_033_Success_HorizonArtificialCaseInsensitive(self):
+    def test200_043_Success_HorizonArtificialCaseInsensitive(self):
         result = d.adjust({'op': 'adjust', 'observation': '0d0.0', 'horizon': 'ArtiFICIal'})
         if ('error' in result):
             self.assertNotEqual(result['error'], d.ERROR_INVALID_HORIZON)
         else:
             self.assert_(True)
 
-    def test200_034_Success_HorizonNaturalCaseInsensitive(self):
+    def test200_044_Success_HorizonNaturalCaseInsensitive(self):
         result = d.adjust({'op': 'adjust', 'observation': '0d0.0', 'horizon': 'NatuRAL'})
         if ('error' in result):
             self.assertNotEqual(result['error'], d.ERROR_INVALID_HORIZON)
         else:
             self.assert_(True)
 
-    def test200_035_Success_HorizonNotGiven(self):
+    def test200_045_Success_HorizonNotGiven(self):
         result = d.adjust({'op': 'adjust', 'observation': '0d0.0'})
         self.assert_('horizon' in result)
         self.assertEqual(result['horizon'], 'natural')
@@ -274,3 +274,9 @@ class DispatchTest(unittest.TestCase):
     def test200_122_Error_PressureHighboundViolation(self):
         result = d.adjust({'op': 'adjust', 'observation': '0d0.0','pressure': '1101'})
         self.assert_(result['error'] == d.ERROR_INVALID_PRESSURE)
+
+#horizon param
+    def test200_141_Error_HorizonInvalidInput(self):
+        result = d.adjust({'op': 'adjust', 'observation': '90d60.0', 'horizon':'unknown'})
+        self.assert_('error' in result)
+        self.assertEqual(result['error'], d.ERROR_INVALID_HORIZON)

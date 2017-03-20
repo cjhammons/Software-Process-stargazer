@@ -10,6 +10,7 @@ ERROR_OP_NOT_SPECIFIED = 'no op is specified'
 ERROR_PARAM_NOT_DICTIONARY = 'parameter is not a dictionary'
 ERROR_DICTIONARY_MISSING = 'dictionary is missing'
 
+
 def dispatch(values=None):
 
     #Validate parm
@@ -87,5 +88,14 @@ def adjust(values=None):
     if (pressure > 1100 or pressure < 100):
         values['error'] = ERROR_INVALID_PRESSURE
         return values
+
+    #horizon check
+    horizon = 'natural'
+    if (not 'horizon' in values):
+        values['horizon'] = 'natural'
+    else:
+        horizon = values['horizon']
+
+
 
     return values
