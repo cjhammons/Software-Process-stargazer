@@ -79,7 +79,7 @@ def adjust(values=None):
         return values
 
     #pressure check
-    pressure = 0
+    pressure = 1010
     if (not 'pressure' in values):
         values['pressure'] = str(1010)
     else:
@@ -94,7 +94,11 @@ def adjust(values=None):
     if (not 'horizon' in values):
         values['horizon'] = 'natural'
     else:
-        horizon = values['horizon']
+        horizon = str(values['horizon']).lower()
+
+    if (horizon != 'horizon' or horizon != 'artificial'):
+        values['error'] = ERROR_INVALID_HORIZON
+        return values
 
 
 
