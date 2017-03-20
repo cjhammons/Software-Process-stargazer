@@ -144,6 +144,35 @@ class DispatchTest(unittest.TestCase):
         else:
             self.assert_(False)
 
+#temperature param
+    def test200_031_Success_TempLowbound(self):
+        result = d.adjust({'op':'adjust','observation':'0d0.0','temperature':'-20'})
+        if('error' in result):
+            self.assertNotEqual(result['error'], d.ERROR_INVALID_TEMPERATURE)
+        else:
+            self.assert_(True)
+
+    def test200_032_Success_TempNom(self):
+        result = d.adjust({'op': 'adjust', 'observation': '0d0.0', 'temperature': '60'})
+        if ('error' in result):
+            self.assertNotEqual(result['error'], d.ERROR_INVALID_TEMPERATURE)
+        else:
+            self.assert_(True)
+
+    def test200_033_Success_TempHighbound(self):
+        result = d.adjust({'op': 'adjust', 'observation': '0d0.0', 'temperature': '120'})
+        if ('error' in result):
+            self.assertNotEqual(result['error'], d.ERROR_INVALID_TEMPERATURE)
+        else:
+            self.assert_(True)
+
+    def test200_034_Success_TempNotGiven(self):
+        result = d.adjust({'op': 'adjust', 'observation': '0d0.0'})
+        if ('error' in result):
+            self.assertNotEqual(result['error'], d.ERROR_INVALID_TEMPERATURE)
+        if('temperature' in result):
+            self.assertEqual(result['temperature'], )
+
 #Pressure param
     def test200_021_Success_PressureLowbound(self):
         result = d.adjust({'op':'adjust','observation':'0d0.0','pressure':'100'})

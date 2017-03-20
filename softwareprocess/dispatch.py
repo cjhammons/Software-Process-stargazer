@@ -3,6 +3,7 @@ ERROR_INVALID_OBSERVATION = 'observation is invalid'
 ERROR_INVALID_HEIGHT = 'height is invalid'
 ERROR_INVALID_PRESSURE = 'pressure is invalid'
 ERROR_INVALID_HORIZON = 'horizon is invalid'
+ERROR_INVALID_TEMPERATURE = 'temperature is invalid'
 ERROR_MANDATORY_INFO_MISSING = 'mandatory information missing'
 ERROR_OP_NOT_LEGAL = 'op is not a legal operation'
 ERROR_OP_NOT_SPECIFIED = 'no op is specified'
@@ -57,9 +58,9 @@ def adjust(values=None):
     #height check
     height = 0
     if (not 'height' in values):
-        values['height'] = 0
+        values['height'] = str(0)
     else:
-        height = values['height']
+        height = int(values['height'])
 
     if (height < 0):
         values['error'] = ERROR_INVALID_HEIGHT
@@ -70,7 +71,7 @@ def adjust(values=None):
     #pressure check
     pressure = 0
     if (not 'pressure' in values):
-        values['pressure'] = 1010
+        values['pressure'] = str(1010)
     else:
         pressure = int(values['pressure'])
 
