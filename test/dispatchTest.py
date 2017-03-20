@@ -112,17 +112,26 @@ class DispatchTest(unittest.TestCase):
         self.assert_(not (d.ERROR_INVALID_OBSERVATION in result))
 
 #Height param
-    def test200_010_Success_HeightLowbound(self):
+    def test200_011_Success_HeightLowbound(self):
         result = d.adjust({'op':'adjust','observation':'0d0.0','height':'0'})
-        self.assert_(not (d.ERROR_INVALID_HEIGHT) in result)
+        if('error' in result):
+            self.assert_(result['error'] != d.ERROR_INVALID_HEIGHT)
+        else:
+            self.assert_(True)
 
-    def test200_011_Success_HeightNom(self):
+    def test200_012_Success_HeightNom(self):
         result = d.adjust({'op':'adjust','observation':'0d0.0','height':'300'})
-        self.assert_(not (d.ERROR_INVALID_HEIGHT) in result)
+        if ('error' in result):
+            self.assert_(result['error'] != d.ERROR_INVALID_HEIGHT)
+        else:
+            self.assert_(True)
 
-    def test200_012_Success_HeightNotGiven(self):
+    def test200_013_Success_HeightNotGiven(self):
         result = d.adjust({'op':'adjust','observation':'0d0.0'})
-        self.assert_(result['height'] == '0')
+        if ('error' in result):
+            self.assert_(result['error'] != d.ERROR_INVALID_HEIGHT)
+        else:
+            self.assert_(True)
 
 #Sad Path
 #Observation Param
@@ -137,3 +146,8 @@ class DispatchTest(unittest.TestCase):
     def test200_103_Error_ObsNotIncluded(self):
         result = d.adjust({'op':'adjust'})
         self.assert_(result['error'] == d.ERROR_MANDATORY_INFO_MISSING)
+
+#Height param
+    def test200_111_Error_HeightLowboundViolation(self):
+        result = d.adjust({'op':'adjust','observation':'0d0.0','height':'-1'})
+        self.assert_(result['error'] == d.ERROR_INVALID_HEIGHT)
