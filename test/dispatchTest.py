@@ -101,15 +101,24 @@ class DispatchTest(unittest.TestCase):
 #Observation param
     def test200_001_Success_ObsLowbound(self):
         result = d.adjust({'op':'adjust','observation':'0d0.0'})
-        self.assert_(not (d.ERROR_INVALID_OBSERVATION in result))
+        if ('error' in result):
+            self.assertNotEquals(result['error'], d.ERROR_INVALID_OBSERVATION)
+        else:
+            self.assert_(True)
 
     def test200_002_Success_ObsNom(self):
         result = d.adjust({'op':'adjust','observation':'45d30.0'})
-        self.assert_(not (d.ERROR_INVALID_OBSERVATION in result))
+        if ('error' in result):
+            self.assertNotEquals(result['error'], d.ERROR_INVALID_OBSERVATION)
+        else:
+            self.assert_(True)
 
     def test200_003_Success_ObsHighbound(self):
         result = d.adjust({'op':'adjust','observation':'89d59.9'})
-        self.assert_(not (d.ERROR_INVALID_OBSERVATION in result))
+        if ('error' in result):
+            self.assertNotEquals(result['error'], d.ERROR_INVALID_OBSERVATION)
+        else:
+            self.assert_(True)
 
 #Height param
     def test200_011_Success_HeightLowbound(self):
@@ -186,7 +195,6 @@ class DispatchTest(unittest.TestCase):
 #Pressure param
     def test300_121_Error_PressureLowboundViolation(self):
         result = d.adjust({'op':'adjust','observation':'0d0.0','pressure':'99'})
-
         self.assert_(result['error'] == d.ERROR_INVALID_PRESSURE)
 
     def test200_122_Error_PressureHighboundViolation(self):
