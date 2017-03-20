@@ -204,6 +204,40 @@ class DispatchTest(unittest.TestCase):
         else:
             self.assert_(False)
 
+#horizon param
+    def test200_031_Success_HorizonArtificialLowercase(self):
+        result = d.adjust({'op': 'adjust', 'observation': '0d0.0', 'horizon': 'artificial'})
+        if('error' in result):
+            self.assertNotEqual(result['error'], d.ERROR_INVALID_HORIZON)
+        else:
+            self.assert_(True)
+
+    def test200_032_Succcess_HorizonNaturalLowercase(self):
+        result = d.adjust({'op': 'adjust', 'observation': '0d0.0', 'horizon': 'natural'})
+        if ('error' in result):
+             self.assertNotEqual(result['error'], d.ERROR_INVALID_HORIZON)
+        else:
+             self.assert_(True)
+
+    def test200_033_Success_HorizonArtificialCaseInsensitive(self):
+        result = d.adjust({'op': 'adjust', 'observation': '0d0.0', 'horizon': 'ArtiFICIal'})
+        if ('error' in result):
+            self.assertNotEqual(result['error'], d.ERROR_INVALID_HORIZON)
+        else:
+            self.assert_(True)
+
+    def test200_034_Success_HorizonNaturalCaseInsensitive(self):
+        result = d.adjust({'op': 'adjust', 'observation': '0d0.0', 'horizon': 'NatuRAL'})
+        if ('error' in result):
+            self.assertNotEqual(result['error'], d.ERROR_INVALID_HORIZON)
+        else:
+            self.assert_(True)
+
+    def test200_035_Success_HorizonNotGiven(self):
+        result = d.adjust({'op': 'adjust', 'observation': '0d0.0'})
+        self.assert_('horizon' in result)
+        self.assertEqual(result['horizon'], 'natural')
+
 #Sad Path
 #Observation Param
     def test200_101_Error_ObsLowboundViolation(self):
