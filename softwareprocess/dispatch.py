@@ -9,6 +9,7 @@ ERROR_OP_NOT_LEGAL = 'op is not a legal operation'
 ERROR_OP_NOT_SPECIFIED = 'no op is specified'
 ERROR_PARAM_NOT_DICTIONARY = 'parameter is not a dictionary'
 ERROR_DICTIONARY_MISSING = 'dictionary is missing'
+ERROR_ALTITUDE_ALREADY_INCLUDED = 'altitude already included'
 
 
 def dispatch(values=None):

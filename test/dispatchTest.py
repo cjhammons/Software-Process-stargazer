@@ -66,26 +66,33 @@ class DispatchTest(unittest.TestCase):
 #       inputs:     values -> dictionary of key values, passed from dispatch
 #       outputs:    dictionary of params and result of calculation
 #   Happy Path Analysis:
-#       observation:    low value       0d0.0
-#                       nom value       45d30.0
-#                       high value      89d59.9
-#       height:         low value       0
-#                       nom value       300
+#       observation:    low value       > 0d0.0
+#                       nom value       = 45d30.0
+#                       high value      < 89d59.9
+#       height:         low value       > 0
+#                       nom value       < 300
 #                       missing value
-#       temperature:    low value        -20
-#                       nom value       60
-#                       high value      120
+#       temperature:    low value       > -20
+#                       nom value       = 60
+#                       high value      < 120
 #                       missing value
-#       pressure:       low value       100
-#                       nom value       600
-#                       high value      1100
+#       pressure:       low value       >= 100
+#                       nom value       = 600
+#                       high value      <= 1100
 #                       missing value
-#       horizon:        value1          artificial
-#                       value2          natural
-#                       value3          ArtiFICIal
-#                       value4          NatuRAL
+#       horizon:        value1          = artificial
+#                       value2          = natural
+#                       value3          = ArtiFICIal
+#                       value4          = NatuRAL
 #                       missing value
-#
+#       output:
+#                       Outputs the altitude of a sighting based on given parameters.
+#                           low observation, nom height, nom temperature, nom pressure, artificial horizon
+#                           high observation, nom height, nom temperature, nom pressure, artificial horizon
+#                           nom observation, low height, nom temperature, nom pressure, natural horizon
+#                           nom observation, nom height, nom temperature, low pressure, artificial horizon
+#                           nom observation, nom height, nom temperature, high pressure, artificial horizon
+#                           nom observation, nom height, nom temperature, nom pressure, natural horizon
 #   Sad Path Analysis:
 #       observation:    low violation   -1d-1.1
 #                       high violation  90d60.0
@@ -238,6 +245,39 @@ class DispatchTest(unittest.TestCase):
         self.assert_('horizon' in result)
         self.assertEqual(result['horizon'], 'natural')
 
+#Calculation
+    def test200_051_Success_ObsLowboundCalc(self):
+        result = d.adjust({'op':'adjust','observation':'0d0.0','height':'300','temperature':'60','pressure':'600','horizon':'artificial'})
+        self.assert_('altitude' in result)
+        self.assertEqual(result['altitude'], '-0d2.4')
+
+    def test200_052_Success_ObsHighboundCalc(self):
+        result = d.adjust({'op': 'adjust', 'observation': '89d30.0', 'height': '300', 'temperature': '60', 'pressure': '600','horizon': 'artificial'})
+        self.assert_('altitude' in result)
+        self.assertEqual(result['altitude'], '89d27.2')
+
+    def test200_053_Success_HeightLowboundCalc(self):
+        result = d.adjust(
+            {'op': 'adjust', 'observation': '45d30.0', 'height': '0', 'temperature': '60', 'pressure': '600',
+             'horizon': 'natural'})
+        self.assert_('altitude' in result)
+        self.assertEqual(result['altitude'], '45d27.2')
+
+    def test200_054_Success_PressureLowboundCalc(self):
+        result = d.adjust(
+            {'op': 'adjust', 'observation': '45d30.0', 'height': '300', 'temperature': '60', 'pressure': '100',
+             'horizon': 'artificial'})
+        self.assert_('altitude' in result)
+        self.assertEqual(result['altitude'], '45d29.3')
+
+    def test200_055_Success_PressureHighboundCalc(self):
+        result = d.adjust(
+            {'op': 'adjust', 'observation': '45d30.0', 'height': '300', 'temperature': '60', 'pressure': '1100',
+             'horizon': 'artificial'})
+        self.assert_('altitude' in result)
+        self.assertEqual(result['altitude'], '45d29.5')
+
+
 #Sad Path
 #Observation Param
     def test200_101_Error_ObsLowboundViolation(self):
@@ -277,6 +317,6 @@ class DispatchTest(unittest.TestCase):
 
 #horizon param
     def test200_141_Error_HorizonInvalidInput(self):
-        result = d.adjust({'op': 'adjust', 'observation': '90d60.0', 'horizon':'unknown'})
+        result = d.adjust({'op': 'adjust', 'observation': '0d0.0', 'horizon':'unknown'})
         self.assert_('error' in result)
         self.assertEqual(result['error'], d.ERROR_INVALID_HORIZON)
