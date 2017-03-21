@@ -112,9 +112,15 @@ def adjust(values=None):
     refraction = (-0.00452 * pressure) / 60
 
     altitudeDecimalDegree = obsDecimalDegree + dip + refraction
+    negative = False
+    if (altitudeDecimalDegree < 0):
+        negative = True
+    altDegree = abs(int(altitudeDecimalDegree))
+    altMinute = abs(round((altitudeDecimalDegree - altDegree) * 60, 1))
 
-    altDegree = int(altitudeDecimalDegree)
-    altMinute = round((altitudeDecimalDegree - altDegree) * 60, 1)
+    altFinal = ''
+    if (negative):
+        altFinal += '-'
     altFinal = str(altDegree) + 'd' + str(altMinute)
 
     values['altitude'] = altFinal

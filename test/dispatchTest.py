@@ -248,33 +248,33 @@ class DispatchTest(unittest.TestCase):
     def test200_051_Success_ObsLowboundCalc(self):
         result = d.adjust({'op':'adjust','observation':'0d0.0','height':'300','temperature':'60','pressure':'600','horizon':'artificial'})
         self.assert_('altitude' in result)
-        self.assertEqual(result['altitude'], '-0d2.4')
+        self.assertEqual(result['altitude'], '-0d2.7')
 
     def test200_052_Success_ObsHighboundCalc(self):
         result = d.adjust({'op': 'adjust', 'observation': '89d30.0', 'height': '300', 'temperature': '60', 'pressure': '600','horizon': 'artificial'})
         self.assert_('altitude' in result)
-        self.assertEqual(result['altitude'], '89d27.2')
+        self.assertEqual(result['altitude'], '89d27.3')
 
     def test200_053_Success_HeightLowboundCalc(self):
         result = d.adjust(
             {'op': 'adjust', 'observation': '45d30.0', 'height': '0', 'temperature': '60', 'pressure': '600',
              'horizon': 'natural'})
         self.assert_('altitude' in result)
-        self.assertEqual(result['altitude'], '45d27.2')
+        self.assertEqual(result['altitude'], '45d26.8')
 
     def test200_054_Success_PressureLowboundCalc(self):
         result = d.adjust(
             {'op': 'adjust', 'observation': '45d30.0', 'height': '300', 'temperature': '60', 'pressure': '100',
              'horizon': 'artificial'})
         self.assert_('altitude' in result)
-        self.assertEqual(result['altitude'], '45d29.3')
+        self.assertEqual(result['altitude'], '44d2.9')
 
     def test200_055_Success_PressureHighboundCalc(self):
         result = d.adjust(
             {'op': 'adjust', 'observation': '45d30.0', 'height': '300', 'temperature': '60', 'pressure': '1100',
              'horizon': 'artificial'})
         self.assert_('altitude' in result)
-        self.assertEqual(result['altitude'], '45d25.4')
+        self.assertEqual(result['altitude'], '40d31.7')
 
 
 #Sad Path
