@@ -114,7 +114,9 @@ def adjust(values=None):
     altitudeDecimalDegree = obsDecimalDegree + dip + refraction
 
     altDegree = int(altitudeDecimalDegree)
-    altMinute = altitudeDecimalDegree - altDegree
-    altFinal = 
+    altMinute = round((altitudeDecimalDegree - altDegree) * 60, 1)
+    altFinal = str(altDegree) + 'd' + str(altMinute)
+
+    values['altitude'] = altFinal
 
     return values
