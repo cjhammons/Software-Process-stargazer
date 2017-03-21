@@ -105,7 +105,7 @@ def adjust(values=None):
 
     #Calculation
     obsDecimalDegree = obsDegree + (obsMinute / 60)
-    dip = 0
+    dip = 0.0
     if (horizon == 'natural'):
         dip = (-0.97 * math.sqrt(height)) / 60
 

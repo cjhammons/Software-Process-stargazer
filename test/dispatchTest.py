@@ -260,7 +260,7 @@ class DispatchTest(unittest.TestCase):
             {'op': 'adjust', 'observation': '45d30.0', 'height': '0', 'temperature': '60', 'pressure': '600',
              'horizon': 'natural'})
         self.assert_('altitude' in result)
-        self.assertEqual(result['altitude'], '45d26.8')
+        self.assertEqual(result['altitude'], '45d27.3')
 
     def test200_054_Success_PressureLowboundCalc(self):
         result = d.adjust(
@@ -273,6 +273,13 @@ class DispatchTest(unittest.TestCase):
         result = d.adjust(
             {'op': 'adjust', 'observation': '45d30.0', 'height': '300', 'temperature': '60', 'pressure': '1100',
              'horizon': 'artificial'})
+        self.assert_('altitude' in result)
+        self.assertEqual(result['altitude'], '40d31.7')
+
+    def test200_056_Success_NaturalHorizonCalc(self):
+        result = d.adjust(
+            {'op': 'adjust', 'observation': '45d30.0', 'height': '300', 'temperature': '60', 'pressure': '600',
+             'horizon': 'natureal'})
         self.assert_('altitude' in result)
         self.assertEqual(result['altitude'], '40d31.7')
 
