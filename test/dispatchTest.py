@@ -274,14 +274,14 @@ class DispatchTest(unittest.TestCase):
             {'op': 'adjust', 'observation': '45d30.0', 'height': '300', 'temperature': '60', 'pressure': '1100',
              'horizon': 'artificial'})
         self.assert_('altitude' in result)
-        self.assertEqual(result['altitude'], '40d31.7')
+        self.assertEqual(result['altitude'], '45d25.0')
 
     def test200_056_Success_NaturalHorizonCalc(self):
         result = d.adjust(
             {'op': 'adjust', 'observation': '45d30.0', 'height': '300', 'temperature': '60', 'pressure': '600',
              'horizon': 'natural'})
         self.assert_('altitude' in result)
-        self.assertEqual(result['altitude'], '45d44.1')
+        self.assertEqual(result['altitude'], '45d10.5')
 
 
 #Sad Path
