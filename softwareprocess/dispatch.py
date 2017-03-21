@@ -121,7 +121,7 @@ def adjust(values=None):
     altFinal = ''
     if (negative):
         altFinal += '-'
-    altFinal = str(altDegree) + 'd' + str(altMinute)
+    altFinal += str(altDegree) + 'd' + str(altMinute)
 
     values['altitude'] = altFinal
 

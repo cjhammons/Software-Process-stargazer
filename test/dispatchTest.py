@@ -267,7 +267,7 @@ class DispatchTest(unittest.TestCase):
             {'op': 'adjust', 'observation': '45d30.0', 'height': '300', 'temperature': '60', 'pressure': '100',
              'horizon': 'artificial'})
         self.assert_('altitude' in result)
-        self.assertEqual(result['altitude'], '44d2.9')
+        self.assertEqual(result['altitude'], '44d32.8')
 
     def test200_055_Success_PressureHighboundCalc(self):
         result = d.adjust(
