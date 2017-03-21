@@ -92,7 +92,6 @@ class DispatchTest(unittest.TestCase):
 #                           nom observation, low height, nom temperature, nom pressure, natural horizon
 #                           nom observation, nom height, nom temperature, low pressure, artificial horizon
 #                           nom observation, nom height, nom temperature, high pressure, artificial horizon
-#                           nom observation, nom height, nom temperature, nom pressure, natural horizon
 #   Sad Path Analysis:
 #       observation:    low violation   -1d-1.1
 #                       high violation  90d60.0
@@ -275,7 +274,7 @@ class DispatchTest(unittest.TestCase):
             {'op': 'adjust', 'observation': '45d30.0', 'height': '300', 'temperature': '60', 'pressure': '1100',
              'horizon': 'artificial'})
         self.assert_('altitude' in result)
-        self.assertEqual(result['altitude'], '45d29.5')
+        self.assertEqual(result['altitude'], '45d25.4')
 
 
 #Sad Path

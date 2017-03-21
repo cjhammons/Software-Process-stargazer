@@ -1,3 +1,5 @@
+import math
+
 #Error messages
 ERROR_INVALID_OBSERVATION = 'observation is invalid'
 ERROR_INVALID_HEIGHT = 'height is invalid'
@@ -101,6 +103,18 @@ def adjust(values=None):
         values['error'] = ERROR_INVALID_HORIZON
         return values
 
+    #Calculation
+    obsDecimalDegree = obsDegree + (obsMinute / 60)
+    dip = 0
+    if (horizon == 'natural'):
+        dip = (-0.97 * math.sqrt(height)) / 60
 
+    refraction = (-0.00452 * pressure) / 60
+
+    altitudeDecimalDegree = obsDecimalDegree + dip + refraction
+
+    altDegree = int(altitudeDecimalDegree)
+    altMinute = altitudeDecimalDegree - altDegree
+    altFinal = 
 
     return values
