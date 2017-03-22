@@ -13,7 +13,6 @@ ERROR_PARAM_NOT_DICTIONARY = 'parameter is not a dictionary'
 ERROR_DICTIONARY_MISSING = 'dictionary is missing'
 ERROR_ALTITUDE_ALREADY_INCLUDED = 'altitude already included'
 
-
 def dispatch(values=None):
 
     #Validate parm
@@ -48,7 +47,6 @@ def adjust(values=None):
     if ('d' not in observationRaw):
         values['error'] = ERROR_INVALID_OBSERVATION
         return values
-
     obsSplit = observationRaw.split('d')
     obsDegree = int(obsSplit[0])
     obsMinute = float(obsSplit[1])
@@ -76,7 +74,6 @@ def adjust(values=None):
         values['temperature'] = str(temperature)
     else:
         temperature = int(values['temperature'])
-
     if(temperature < -20 or temperature > 120):
         values['error'] = ERROR_INVALID_TEMPERATURE
         return values
@@ -87,7 +84,6 @@ def adjust(values=None):
         values['pressure'] = str(1010)
     else:
         pressure = int(values['pressure'])
-
     if (pressure > 1100 or pressure < 100):
         values['error'] = ERROR_INVALID_PRESSURE
         return values
@@ -108,9 +104,7 @@ def adjust(values=None):
     dip = 0.0
     if (horizon == 'natural'):
         dip = (-0.97 * math.sqrt(height)) / 60
-
     refraction = (-0.00452 * pressure) / 60
-
     altitudeDecimalDegree = obsDecimalDegree + dip + refraction
     negative = False
     if (altitudeDecimalDegree < 0):
@@ -124,5 +118,4 @@ def adjust(values=None):
     altFinal += str(altDegree) + 'd' + str(altMinute)
 
     values['altitude'] = altFinal
-
     return values
