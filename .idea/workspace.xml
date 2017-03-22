@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b2de96b8-3d33-4c02-83f6-aebb1f42be31" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/softwareprocess/201720Assignment4.xls" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/softwareprocess/dispatch.py" afterPath="$PROJECT_DIR$/softwareprocess/dispatch.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -464,7 +464,14 @@
       <option name="project" value="LOCAL" />
       <updated>1487708226697</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="final commit">
+      <created>1490224184095</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1490224184095</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -540,7 +547,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="All greenlights are passing :D" />
-    <option name="LAST_COMMIT_MESSAGE" value="All greenlights are passing :D" />
+    <MESSAGE value="final commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="final commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
