@@ -12,6 +12,9 @@ ERROR_OP_NOT_SPECIFIED = 'no op is specified'
 ERROR_PARAM_NOT_DICTIONARY = 'parameter is not a dictionary'
 ERROR_DICTIONARY_MISSING = 'dictionary is missing'
 ERROR_ALTITUDE_ALREADY_INCLUDED = 'altitude already included'
+ERROR_INVALID_TIME = 'invalid time'
+ERROR_INVALID_DATE = 'invalid date'
+ERROR_STAR_NOT_IN_CATALOGUE = 'star not in catalog'
 
 def dispatch(values=None):
 
@@ -28,7 +31,7 @@ def dispatch(values=None):
     if(values['op'] == 'adjust'):
         return adjust(values)    #split off into its own function for readability
     elif(values['op'] == 'predict'):
-        return values    #This calculation is stubbed out
+        return predict(values)
     elif(values['op'] == 'correct'):
         return values    #This calculation is stubbed out
     elif(values['op'] == 'locate'):
@@ -118,4 +121,7 @@ def adjust(values=None):
     altFinal += str(altDegree) + 'd' + str(altMinute)
 
     values['altitude'] = altFinal
+    return values
+
+def predict(values=None):
     return values

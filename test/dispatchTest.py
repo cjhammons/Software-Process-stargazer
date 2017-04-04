@@ -308,12 +308,12 @@ class DispatchTest(unittest.TestCase):
         result = d.adjust({'op': 'adjust', 'observation': '0d0.0', 'temperature': '-21'})
         self.assertEqual(result['error'], d.ERROR_INVALID_TEMPERATURE)
 
-    def test300_132_Error_TemperatureHighboundViolation(self):
+    def test200_132_Error_TemperatureHighboundViolation(self):
         result = d.adjust({'op': 'adjust', 'observation': '0d0.0', 'temperature': '121'})
         self.assertEqual(result['error'], d.ERROR_INVALID_TEMPERATURE)
 
 #Pressure param
-    def test300_121_Error_PressureLowboundViolation(self):
+    def test200_121_Error_PressureLowboundViolation(self):
         result = d.adjust({'op':'adjust','observation':'0d0.0','pressure':'99'})
         self.assert_(result['error'] == d.ERROR_INVALID_PRESSURE)
 
@@ -326,3 +326,42 @@ class DispatchTest(unittest.TestCase):
         result = d.adjust({'op': 'adjust', 'observation': '0d0.0', 'horizon':'unknown'})
         self.assert_('error' in result)
         self.assertEqual(result['error'], d.ERROR_INVALID_HORIZON)
+
+# 300 predict
+# Desired level of confidence: boundary value analysis
+#       inputs:   values -> dictionary of key values, passed from dispatch
+#       outputs:  dictionary of params and result of prediction
+# Happy Path Analysis:
+#       body:   nom value       Betelgeuse
+#       date:   nom value       2016-01-17
+#       time:   nom value       3:15:42
+#       output: outputs the calculated prediction
+#
+# Sad Path Analysis:
+#       body:   invalid body    asdf
+#       date:   invalid date    13/13/9999
+#       time:   invalid time    25:61:61
+
+#Happy Path
+    def test300_100_Success_Calculation(self):
+        result = d.predict({'op':'predict','body':'Betelgeuse','date':'2016-01-17','time':'03:15:42'})
+        self.assert_('error' not in result)
+        self.assertEqual(result['long'], '75d53.6')
+        self.assertEqual(result['lat'], '7d24.3')
+
+#Sad Path
+    def test300_110_Error_StartNotInCatalogue(self):
+        result = d.predict({'op': 'predict', 'body': 'asdf', 'date': '2016-01-17', 'time': '03:15:42'})
+        self.assert_('error' in result)
+        self.assertEqual(result['error'], d.ERROR_STAR_NOT_IN_CATALOGUE)
+
+    def test_300_111_Error_InvalidDate(self):
+        result = d.predict({'op': 'predict', 'body': 'Betelgeuse', 'date': '13/13/9999', 'time': '03:15:42'})
+        self.assert_('error' in result)
+        self.assertEqual(result['error'], d.ERROR_INVALID_DATE)
+
+    def test_300_112_Error_InvalidTime(self):
+        result = d.predict({'op': 'predict', 'body': 'Betelgeuse', 'date': '2016-01-17', 'time': '25:61:61'})
+        self.assert_('error' in result)
+        self.assertEqual(result['error'], d.ERROR_INVALID_DATE)
+
