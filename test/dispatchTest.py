@@ -334,11 +334,14 @@ class DispatchTest(unittest.TestCase):
 # Happy Path Analysis:
 #       body:   nom value       Betelgeuse
 #       date:   nom value       2016-01-17
+#               missing value
 #       time:   nom value       3:15:42
+#               missing value
 #       output: outputs the calculated prediction
 #
 # Sad Path Analysis:
 #       body:   invalid body    asdf
+#               missing value
 #       date:   invalid date    13/13/9999
 #       time:   invalid time    25:61:61
 
@@ -348,6 +351,12 @@ class DispatchTest(unittest.TestCase):
         self.assert_('error' not in result)
         self.assertEqual(result['long'], '75d53.6')
         self.assertEqual(result['lat'], '7d24.3')
+
+    def test300_101_Success_CalculationMissingDateAndTime(self):
+        result = d.predict({'op': 'predict', 'body': 'Betelgeuse'})
+        self.assert_('error' not in result)
+        self.assertEqual(result['long'], '75d53.6')
+        self.assertEqual(result['lat'], '7d24.3') #TODO reccalculate and put correct values here
 
 #Sad Path
     def test300_110_Error_StartNotInCatalogue(self):
@@ -365,3 +374,7 @@ class DispatchTest(unittest.TestCase):
         self.assert_('error' in result)
         self.assertEqual(result['error'], d.ERROR_INVALID_DATE)
 
+    def test_300_113_Error_NoBody(self):
+        result = d.predict({'op': 'predict', 'date': '2016-01-17', 'time': '25:61:61'})
+        self.assert_('error' in result)
+        self.assertEqual(result['error'], d.ERROR_MANDATORY_INFO_MISSING)
