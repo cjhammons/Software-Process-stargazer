@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b2de96b8-3d33-4c02-83f6-aebb1f42be31" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/softwareprocess/dispatch.py" afterPath="$PROJECT_DIR$/softwareprocess/dispatch.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/dispatchTest.py" afterPath="$PROJECT_DIR$/test/dispatchTest.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,7 +13,7 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/CSSE_$Unnamed.coverage" NAME="Unnamed Coverage Results" MODIFIED="1489976958484" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/softwareprocess" />
-    <SUITE FILE_PATH="coverage/CSSE_$All_Tests__TDD_.coverage" NAME="All Tests (TDD) Coverage Results" MODIFIED="1491508562752" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/CSSE_$All_Tests__TDD_.coverage" NAME="All Tests (TDD) Coverage Results" MODIFIED="1491513972732" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -38,11 +37,10 @@
           <file leaf-file-name="dispatch.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/softwareprocess/dispatch.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="682">
+                <state relative-caret-position="632">
                   <caret line="175" column="4" lean-forward="false" selection-start-line="175" selection-start-column="4" selection-end-line="175" selection-end-column="4" />
                   <folding>
                     <element signature="e#0#11#0" expanded="true" />
-                    <element signature="e#1641#4055#0" expanded="false" />
                     <element signature="e#5536#5788#0" expanded="false" />
                   </folding>
                 </state>
@@ -56,8 +54,8 @@
           <file leaf-file-name="dispatchTest.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/test/dispatchTest.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="464">
-                  <caret line="359" column="0" lean-forward="false" selection-start-line="359" selection-start-column="0" selection-end-line="359" selection-end-column="0" />
+                <state relative-caret-position="481">
+                  <caret line="357" column="48" lean-forward="false" selection-start-line="357" selection-start-column="48" selection-end-line="357" selection-end-column="48" />
                   <folding>
                     <element signature="e#0#15#0" expanded="true" />
                   </folding>
@@ -91,8 +89,8 @@
         <option value="$PROJECT_DIR$/Test/SampleTest.py" />
         <option value="$PROJECT_DIR$/softwareprocess/Sample.py" />
         <option value="$PROJECT_DIR$/softwareprocess/stars.txt" />
-        <option value="$PROJECT_DIR$/test/dispatchTest.py" />
         <option value="$PROJECT_DIR$/softwareprocess/dispatch.py" />
+        <option value="$PROJECT_DIR$/test/dispatchTest.py" />
       </list>
     </option>
   </component>
@@ -471,9 +469,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="All_Tests_(TDD) - 2017.04.06 at 14h 14m 31s.xml">
-      <configuration name="All Tests (TDD)" configurationId="tests" />
-    </history-entry>
     <history-entry file="All_Tests_(TDD) - 2017.04.06 at 14h 35m 18s.xml">
       <configuration name="All Tests (TDD)" configurationId="tests" />
     </history-entry>
@@ -499,6 +494,9 @@
       <configuration name="All Tests (TDD)" configurationId="tests" />
     </history-entry>
     <history-entry file="All_Tests_(TDD) - 2017.04.06 at 14h 56m 02s.xml">
+      <configuration name="All Tests (TDD)" configurationId="tests" />
+    </history-entry>
+    <history-entry file="All_Tests_(TDD) - 2017.04.06 at 16h 26m 12s.xml">
       <configuration name="All Tests (TDD)" configurationId="tests" />
     </history-entry>
   </component>
@@ -568,7 +566,6 @@
           <caret line="134" column="26" lean-forward="true" selection-start-line="134" selection-start-column="26" selection-end-line="134" selection-end-column="26" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <element signature="e#1641#4055#0" expanded="false" />
             <element signature="e#5536#5788#0" expanded="false" />
           </folding>
         </state>
@@ -605,7 +602,6 @@
           <caret line="16" column="50" lean-forward="false" selection-start-line="16" selection-start-column="50" selection-end-line="16" selection-end-column="50" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <element signature="e#1641#4055#0" expanded="false" />
             <element signature="e#5536#5788#0" expanded="false" />
           </folding>
         </state>
@@ -634,7 +630,6 @@
           <caret line="119" column="33" lean-forward="false" selection-start-line="119" selection-start-column="33" selection-end-line="119" selection-end-column="33" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <element signature="e#1641#4055#0" expanded="false" />
             <element signature="e#5536#5788#0" expanded="false" />
           </folding>
         </state>
@@ -663,7 +658,6 @@
           <caret line="119" column="33" lean-forward="false" selection-start-line="119" selection-start-column="33" selection-end-line="119" selection-end-column="33" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <element signature="e#1641#4055#0" expanded="false" />
             <element signature="e#5536#5788#0" expanded="false" />
           </folding>
         </state>
@@ -692,7 +686,6 @@
           <caret line="119" column="33" lean-forward="false" selection-start-line="119" selection-start-column="33" selection-end-line="119" selection-end-column="33" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <element signature="e#1641#4055#0" expanded="false" />
             <element signature="e#5536#5788#0" expanded="false" />
           </folding>
         </state>
@@ -721,7 +714,6 @@
           <caret line="109" column="46" lean-forward="false" selection-start-line="109" selection-start-column="46" selection-end-line="109" selection-end-column="46" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <element signature="e#1641#4055#0" expanded="false" />
             <element signature="e#5536#5788#0" expanded="false" />
           </folding>
         </state>
@@ -750,7 +742,6 @@
           <caret line="98" column="43" lean-forward="false" selection-start-line="98" selection-start-column="43" selection-end-line="98" selection-end-column="43" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <element signature="e#1641#4055#0" expanded="false" />
             <element signature="e#5536#5788#0" expanded="false" />
           </folding>
         </state>
@@ -786,7 +777,6 @@
           <caret line="76" column="21" lean-forward="false" selection-start-line="76" selection-start-column="21" selection-end-line="76" selection-end-column="21" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <element signature="e#1641#4055#0" expanded="false" />
             <element signature="e#5536#5788#0" expanded="false" />
           </folding>
         </state>
@@ -876,8 +866,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/dispatchTest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="359" column="0" lean-forward="false" selection-start-line="359" selection-start-column="0" selection-end-line="359" selection-end-column="0" />
+        <state relative-caret-position="481">
+          <caret line="357" column="48" lean-forward="false" selection-start-line="357" selection-start-column="48" selection-end-line="357" selection-end-column="48" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
@@ -886,11 +876,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/softwareprocess/dispatch.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="682">
+        <state relative-caret-position="632">
           <caret line="175" column="4" lean-forward="false" selection-start-line="175" selection-start-column="4" selection-end-line="175" selection-end-column="4" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <element signature="e#1641#4055#0" expanded="false" />
             <element signature="e#5536#5788#0" expanded="false" />
           </folding>
         </state>

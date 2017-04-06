@@ -350,13 +350,13 @@ class DispatchTest(unittest.TestCase):
         result = d.predict({'op': 'predict', 'body': 'Betelgeuse', 'date': '2016-01-17', 'time': '03:15:42'})
         self.assert_('error' not in result)
         self.assertEqual(result['long'], '75d53.6')
-        self.assertEqual(result['lan'], '7d24.3')
+        self.assertEqual(result['lat'], '7d24.3')
 
     def test300_101_Success_CalculationMissingDateAndTime(self):
         result = d.predict({'op': 'predict', 'body': 'Betelgeuse', 'date': '2016-01-17', 'time': '03:15:42'})
         self.assert_('error' not in result)
-        self.assertEqual(result['long'], '75d53.6')
-        self.assertEqual(result['lan'], '7d24.3')
+        self.assertEqual(result['long'], '270d59')
+        self.assertEqual(result['lat'], '7d24.3')
 
 #Sad Path
     def test300_110_Error_StarNotInCatalogue(self):
