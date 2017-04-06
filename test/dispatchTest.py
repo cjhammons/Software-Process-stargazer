@@ -346,6 +346,17 @@ class DispatchTest(unittest.TestCase):
 #       time:   invalid time    25:61:61
 
 #Happy Path
+    def test300_100_Success_Calculation(self):
+        result = d.predict({'op': 'predict', 'body': 'Betelgeuse', 'date': '2016-01-17', 'time': '03:15:42'})
+        self.assert_('error' not in result)
+        self.assertEqual(result['long'], '75d53.6')
+        self.assertEqual(result['lan'], '7d24.3')
+
+    def test300_101_Success_CalculationMissingDateAndTime(self):
+        result = d.predict({'op': 'predict', 'body': 'Betelgeuse', 'date': '2016-01-17', 'time': '03:15:42'})
+        self.assert_('error' not in result)
+        self.assertEqual(result['long'], '75d53.6')
+        self.assertEqual(result['lan'], '7d24.3')
 
 #Sad Path
     def test300_110_Error_StarNotInCatalogue(self):

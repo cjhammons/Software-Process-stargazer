@@ -127,6 +127,11 @@ def adjust(values=None):
     return values
 
 def predict(values=None):
+    #check for lat or long
+    if ('lat' in values or 'long' in values):
+        values['error'] = ERROR_LAT_LON_INCLUDED
+        return values
+
     #check body
     if ('body' not in values):
         values['error'] = ERROR_MANDATORY_INFO_MISSING
@@ -166,6 +171,9 @@ def predict(values=None):
         values['error'] = ERROR_INVALID_TIME
         return values
 
+    lattitude = bodyData[2]
+    shaStar = bodyData[1]
+    
 
     return values
 
