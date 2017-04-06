@@ -369,4 +369,11 @@ class DispatchTest(unittest.TestCase):
         self.assertEqual(result['error'], d.ERROR_MANDATORY_INFO_MISSING)
 
     def test300_114_Error_ContainsLat(self):
-        result = d.predict({'op': 'predict', 'body': 'asdf', 'date': '2016-01-17', 'time': '03:15:42', 'lat':})
+        result = d.predict({'op': 'predict', 'body': 'asdf', 'date': '2016-01-17', 'time': '03:15:42', 'lat':'7d24.3'})
+        self.assert_('error' in result)
+        self.assertEqual(result['error'], d.ERROR_LAT_LON_INCLUDED)
+
+    def test300_115_Error_ContainsLong(self):
+        result = d.predict({'op': 'predict', 'body': 'asdf', 'date': '2016-01-17', 'time': '03:15:42', 'long': '7d24.3'})
+        self.assert_('error' in result)
+        self.assertEqual(result['error'], d.ERROR_LAT_LON_INCLUDED)

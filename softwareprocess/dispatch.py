@@ -17,7 +17,7 @@ ERROR_ALTITUDE_ALREADY_INCLUDED = 'altitude already included'
 ERROR_INVALID_TIME = 'invalid time'
 ERROR_INVALID_DATE = 'invalid date'
 ERROR_STAR_NOT_IN_CATALOGUE = 'star not in catalog'
-ERROR_LAT_LON_INCLUDED = 'lat and long cannot be included'
+ERROR_LAT_LON_INCLUDED = 'lat or long cannot be included'
 
 def dispatch(values=None):
 
