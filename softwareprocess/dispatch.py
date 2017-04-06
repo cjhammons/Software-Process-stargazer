@@ -166,7 +166,7 @@ def predict(values=None):
         values['error'] = ERROR_INVALID_TIME
         return values
 
-    
+
     return values
 
 #scans stars.txt for the provided body and returns it's data if found

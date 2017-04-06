@@ -347,7 +347,6 @@ class DispatchTest(unittest.TestCase):
 
 #Happy Path
 
-
 #Sad Path
     def test300_110_Error_StarNotInCatalogue(self):
         result = d.predict({'op': 'predict', 'body': 'asdf', 'date': '2016-01-17', 'time': '03:15:42'})
@@ -362,9 +361,12 @@ class DispatchTest(unittest.TestCase):
     def test300_112_Error_InvalidTime(self):
         result = d.predict({'op': 'predict', 'body': 'Betelgeuse', 'date': '2016-01-17', 'time': '25:61:61'})
         self.assert_('error' in result)
-        self.assertEqual(result['error'], d.ERROR_INVALID_DATE)
+        self.assertEqual(result['error'], d.ERROR_INVALID_TIME)
 
     def test300_113_Error_NoBody(self):
         result = d.predict({'op': 'predict', 'date': '2016-01-17', 'time': '25:61:61'})
         self.assert_('error' in result)
         self.assertEqual(result['error'], d.ERROR_MANDATORY_INFO_MISSING)
+
+    def test300_114_Error_ContainsLat(self):
+        result = d.predict({'op': 'predict', 'body': 'asdf', 'date': '2016-01-17', 'time': '03:15:42', 'lat':})
