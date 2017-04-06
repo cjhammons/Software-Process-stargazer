@@ -204,7 +204,7 @@ def degreeToDecimal(degree=''):
     minute = float(degSplit[1])
     return deg + (minute / 60)
 
-def decimalToDegree(decDegree=0):
+def decimalToDegree(decDegree=0.0):
     neg = False
     if (decDegree < 0):
         neg = True
