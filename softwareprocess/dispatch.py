@@ -43,6 +43,10 @@ def dispatch(values=None):
         values['error'] = ERROR_OP_NOT_LEGAL
         return values
 
+#-------------------------------------------------------------------------
+# Main Functions
+#-------------------------------------------------------------------------
+
 def adjust(values=None):
     #Observation check
     if (not 'observation' in values):
@@ -171,11 +175,17 @@ def predict(values=None):
         values['error'] = ERROR_INVALID_TIME
         return values
 
-    lattitude = bodyData[2]
     shaStar = bodyData[1]
-    
+    lattitude = bodyData[2]
+    longitude = calculateLongitude(shaStar, time, date)
 
+    values['lat'] = lattitude
+    values['long'] = longitude
     return values
+
+#-------------------------------------------------------------------------
+# Helper Functions
+#-------------------------------------------------------------------------
 
 #scans stars.txt for the provided body and returns it's data if found
 def getBodyData(body=''):
@@ -183,9 +193,43 @@ def getBodyData(body=''):
     file = open(filename)
     lines = file.readlines()
     for line in lines:
-        if(body in line):
+        if(body.lower() in line.lower()):
             l = line.rstrip('\r\n')
             return l.split('\t')
     return None
 
+def degreeToDecimal(degree=''):
+    degSplit = degree.split('d')
+    deg = int(degSplit[0])
+    minute = float(degSplit[1])
+    return deg + (minute / 60)
 
+def decimalToDegree(decDegree=0):
+    neg = False
+    if (decDegree < 0):
+        neg = True
+    deg = abs(int(decDegree))
+    minute = abs(round((decDegree - deg) * 60, 1))
+    final = ''
+    if (neg):
+        final += '-'
+    final += str(deg) + 'd' + str(minute)
+    return file
+
+def calculateLongitude(shaStar, time, date):
+    #Note: All degree values are converted to decimal from 'xdy.y' format until end of calculation
+    baseLineGhaAres = degreeToDecimal('100d42.6')
+    baseLineDateTime = datetime.datetime(2001, 01, 01, 0, 0, 0)
+    yearDifference = date.year - 2001
+    cumulativeProgression = float(yearDifference * degreeToDecimal('-0d14.31667'))
+    leapYears = int(yearDifference / 4)
+    leapYearProgression = float(degreeToDecimal('0d59.0') * leapYears)
+    primeMeridianRotation = baseLineGhaAres + cumulativeProgression + leapYearProgression
+
+    masterDateTime = datetime.datetime(date.year, date.month, date.day, time.hour, time.minute, time.second)
+    elapsedSeconds = (masterDateTime - baseLineDateTime).total_seconds()
+    rotationAmount = (elapsedSeconds  / 86164.1) * 360
+    ghaAres = baseLineGhaAres + rotationAmount
+
+    ghaStar = ghaAres + shaStar
+    ghaStar = ghaStar % 360

@@ -353,7 +353,7 @@ class DispatchTest(unittest.TestCase):
         self.assertEqual(result['lat'], '7d24.3')
 
     def test300_101_Success_CalculationMissingDateAndTime(self):
-        result = d.predict({'op': 'predict', 'body': 'Betelgeuse', 'date': '2016-01-17', 'time': '03:15:42'})
+        result = d.predict({'op': 'predict', 'body': 'Betelgeuse'})
         self.assert_('error' not in result)
         self.assertEqual(result['long'], '270d59')
         self.assertEqual(result['lat'], '7d24.3')
