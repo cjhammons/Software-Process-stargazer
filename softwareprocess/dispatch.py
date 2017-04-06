@@ -232,4 +232,4 @@ def calculateLongitude(shaStar, time, date):
     ghaAres = baseLineGhaAres + rotationAmount
 
     ghaStar = ghaAres + shaStar
-    ghaStar = ghaStar % 360
+    return decimalToDegree(ghaStar % 360)
