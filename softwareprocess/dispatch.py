@@ -199,10 +199,17 @@ def getBodyData(body=''):
     return None
 
 def degreeToDecimal(degree=''):
+    negative = False
+    if (degree.startswith('-')):
+        negative = True
     degSplit = degree.split('d')
     deg = int(degSplit[0])
     minute = float(degSplit[1])
-    return deg + (minute / 60)
+    combined = deg + (minute / 60)
+    if (negative):
+        return -combined
+    else:
+        return combined
 
 def decimalToDegree(decDegree=0.0):
     neg = False
@@ -214,7 +221,7 @@ def decimalToDegree(decDegree=0.0):
     if (neg):
         final += '-'
     final += str(deg) + 'd' + str(minute)
-    return file
+    return final
 
 def calculateLongitude(shaStar, time, date):
     #Note: All degree values are converted to decimal from 'xdy.y' format until end of calculation
@@ -228,8 +235,8 @@ def calculateLongitude(shaStar, time, date):
 
     masterDateTime = datetime.datetime(date.year, date.month, date.day, time.hour, time.minute, time.second)
     elapsedSeconds = (masterDateTime - baseLineDateTime).total_seconds()
-    rotationAmount = (elapsedSeconds  / 86164.1) * 360
-    ghaAres = baseLineGhaAres + rotationAmount
+    rotationAmount = ((elapsedSeconds  / 86164.1) * 360) % 360
+    ghaAres = primeMeridianRotation + rotationAmount
 
     ghaStar = ghaAres + degreeToDecimal(shaStar)
     ghaStar = ghaStar % 360
