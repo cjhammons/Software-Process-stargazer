@@ -1,4 +1,5 @@
 import math
+import os
 
 #Error messages
 ERROR_INVALID_OBSERVATION = 'observation is invalid'
@@ -15,6 +16,7 @@ ERROR_ALTITUDE_ALREADY_INCLUDED = 'altitude already included'
 ERROR_INVALID_TIME = 'invalid time'
 ERROR_INVALID_DATE = 'invalid date'
 ERROR_STAR_NOT_IN_CATALOGUE = 'star not in catalog'
+ERROR_LAT_LON_INCLUDED = 'lat and long cannot be included'
 
 def dispatch(values=None):
 
@@ -124,4 +126,22 @@ def adjust(values=None):
     return values
 
 def predict(values=None):
+    if ('body' not in values):
+        values['error'] = ERROR_MANDATORY_INFO_MISSING
+        return values
+    bodyData = getBodyData(values['body'])
     return values
+
+#scans stars.txt
+def getBodyData(body=''):
+    # file = open('stars.txt', 'r')
+    filename = os.path.join(os.path.dirname(__file__), 'stars.txt')
+    file = open(filename)
+    lines = file.readlines()
+    for line in lines:
+        if(body in line):
+            l = line.rstrip('\r\n')
+            return l.split('\t')
+    return None
+
+
