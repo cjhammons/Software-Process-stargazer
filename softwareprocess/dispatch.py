@@ -132,9 +132,8 @@ def predict(values=None):
     bodyData = getBodyData(values['body'])
     return values
 
-#scans stars.txt
+#scans stars.txt for the provided body and returns it's data if found
 def getBodyData(body=''):
-    # file = open('stars.txt', 'r')
     filename = os.path.join(os.path.dirname(__file__), 'stars.txt')
     file = open(filename)
     lines = file.readlines()
