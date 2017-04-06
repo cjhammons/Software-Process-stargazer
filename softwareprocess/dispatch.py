@@ -152,7 +152,21 @@ def predict(values=None):
 
     #time
     timeString = '00:00:00'
+    if ('time' in values):
+        timeString = values['time']
 
+    timeSplit = timeString.split(':')
+    if (timeSplit.__len__() != 3):
+        values['error'] = ERROR_INVALID_TIME
+        return values
+
+    try:
+        time = datetime.time(int(timeSplit[0]), int(timeSplit[1]), int(timeSplit[2]))
+    except ValueError:
+        values['error'] = ERROR_INVALID_TIME
+        return values
+
+    
     return values
 
 #scans stars.txt for the provided body and returns it's data if found
