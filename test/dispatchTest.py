@@ -354,17 +354,17 @@ class DispatchTest(unittest.TestCase):
         self.assert_('error' in result)
         self.assertEqual(result['error'], d.ERROR_STAR_NOT_IN_CATALOGUE)
 
-    def test_300_111_Error_InvalidDate(self):
+    def test300_111_Error_InvalidDate(self):
         result = d.predict({'op': 'predict', 'body': 'Betelgeuse', 'date': '13/13/9999', 'time': '03:15:42'})
         self.assert_('error' in result)
         self.assertEqual(result['error'], d.ERROR_INVALID_DATE)
 
-    def test_300_112_Error_InvalidTime(self):
+    def test300_112_Error_InvalidTime(self):
         result = d.predict({'op': 'predict', 'body': 'Betelgeuse', 'date': '2016-01-17', 'time': '25:61:61'})
         self.assert_('error' in result)
         self.assertEqual(result['error'], d.ERROR_INVALID_DATE)
 
-    def test_300_113_Error_NoBody(self):
+    def test300_113_Error_NoBody(self):
         result = d.predict({'op': 'predict', 'date': '2016-01-17', 'time': '25:61:61'})
         self.assert_('error' in result)
         self.assertEqual(result['error'], d.ERROR_MANDATORY_INFO_MISSING)
