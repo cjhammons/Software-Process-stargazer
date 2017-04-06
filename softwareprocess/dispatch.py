@@ -1,5 +1,6 @@
 import math
 import os
+import datetime
 
 #Error messages
 ERROR_INVALID_OBSERVATION = 'observation is invalid'
@@ -126,10 +127,32 @@ def adjust(values=None):
     return values
 
 def predict(values=None):
+    #check body
     if ('body' not in values):
         values['error'] = ERROR_MANDATORY_INFO_MISSING
         return values
     bodyData = getBodyData(values['body'])
+    if (bodyData == None):
+        values['error'] = ERROR_STAR_NOT_IN_CATALOGUE
+        return values
+    #date
+    dateString = '2001-01-01'
+    if ('date' in values):
+        dateString = values['date']
+
+    dateSplit = dateString.split('-')
+    if (dateSplit.__len__() != 3):
+        values['error'] = ERROR_INVALID_DATE
+        return values
+    try:
+        date = datetime.date(int(dateSplit[0]), int(dateSplit[1]), int(dateSplit[2]))
+    except ValueError:
+        values['error'] = ERROR_INVALID_DATE
+        return values
+
+    #time
+    timeString = '00:00:00'
+
     return values
 
 #scans stars.txt for the provided body and returns it's data if found

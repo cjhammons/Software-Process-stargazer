@@ -32,15 +32,15 @@ class DispatchTest(unittest.TestCase):
 
     def test100_002_Success_PredictOp(self):
         result = d.dispatch({'op':'predict'})
-        self.assert_(not ('error' in result), "predict op not recognized")
+        self.assert_(not (d.ERROR_OP_NOT_LEGAL in result), "predict op not recognized")
 
     def test100_003_Success_CorrectOp(self):
         result = d.dispatch({'op':'correct'})
-        self.assert_(not ('error' in result), "correct op not recognized")
+        self.assert_(not (d.ERROR_OP_NOT_LEGAL in result), "correct op not recognized")
 
     def test100_004_Success_LocateOp(self):
         result = d.dispatch({'op':'locate'})
-        self.assert_(not ('error' in result), "locate op not recognized")
+        self.assert_(not (d.ERROR_OP_NOT_LEGAL in result), "locate op not recognized")
 
 #Sad Path
     def test100_100_Error_EmptyDict(self):
