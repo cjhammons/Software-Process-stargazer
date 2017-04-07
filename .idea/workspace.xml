@@ -13,7 +13,7 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/CSSE_$Unnamed.coverage" NAME="Unnamed Coverage Results" MODIFIED="1489976958484" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/softwareprocess" />
-    <SUITE FILE_PATH="coverage/CSSE_$All_Tests__TDD_.coverage" NAME="All Tests (TDD) Coverage Results" MODIFIED="1491522938659" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/CSSE_$All_Tests__TDD_.coverage" NAME="All Tests (TDD) Coverage Results" MODIFIED="1491523160575" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -31,18 +31,20 @@
     <favorites_list name="CSSE_" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.56449896">
+    <splitter split-orientation="horizontal" split-proportion="0.4216418">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="dispatch.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/softwareprocess/dispatch.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="750">
+                <state relative-caret-position="736">
                   <caret line="243" column="0" lean-forward="false" selection-start-line="243" selection-start-column="0" selection-end-line="243" selection-end-column="0" />
                   <folding>
                     <element signature="e#0#11#0" expanded="true" />
                     <element signature="e#1809#4223#0" expanded="false" />
+                    <element signature="e#4255#5714#0" expanded="false" />
                     <element signature="e#5986#6254#0" expanded="false" />
+                    <element signature="e#6292#6570#0" expanded="false" />
                     <element signature="e#6612#6856#0" expanded="false" />
                   </folding>
                 </state>
@@ -56,8 +58,8 @@
           <file leaf-file-name="dispatchTest.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/test/dispatchTest.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="170">
-                  <caret line="351" column="97" lean-forward="false" selection-start-line="351" selection-start-column="97" selection-end-line="351" selection-end-column="97" />
+                <state relative-caret-position="272">
+                  <caret line="357" column="118" lean-forward="false" selection-start-line="357" selection-start-column="118" selection-end-line="357" selection-end-column="118" />
                   <folding>
                     <element signature="e#0#15#0" expanded="true" />
                   </folding>
@@ -471,15 +473,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="All_Tests_(TDD) - 2017.04.06 at 18h 28m 09s.xml">
-      <configuration name="All Tests (TDD)" configurationId="tests" />
-    </history-entry>
-    <history-entry file="All_Tests_(TDD) - 2017.04.06 at 18h 30m 44s.xml">
-      <configuration name="All Tests (TDD)" configurationId="tests" />
-    </history-entry>
-    <history-entry file="All_Tests_(TDD) - 2017.04.06 at 18h 31m 31s.xml">
-      <configuration name="All Tests (TDD)" configurationId="tests" />
-    </history-entry>
     <history-entry file="All_Tests_(TDD) - 2017.04.06 at 18h 42m 12s.xml">
       <configuration name="All Tests (TDD)" configurationId="tests" />
     </history-entry>
@@ -501,6 +494,15 @@
     <history-entry file="All_Tests_(TDD) - 2017.04.06 at 18h 55m 38s.xml">
       <configuration name="All Tests (TDD)" configurationId="tests" />
     </history-entry>
+    <history-entry file="All_Tests_(TDD) - 2017.04.06 at 18h 57m 22s.xml">
+      <configuration name="All Tests (TDD)" configurationId="tests" />
+    </history-entry>
+    <history-entry file="All_Tests_(TDD) - 2017.04.06 at 18h 57m 48s.xml">
+      <configuration name="All Tests (TDD)" configurationId="tests" />
+    </history-entry>
+    <history-entry file="All_Tests_(TDD) - 2017.04.06 at 18h 59m 20s.xml">
+      <configuration name="All Tests (TDD)" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -513,7 +515,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17110874" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -522,7 +524,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -552,9 +554,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/test/dispatchTest.py</url>
-          <line>351</line>
-          <option name="timeStamp" value="44" />
+          <url>file://$PROJECT_DIR$/softwareprocess/dispatch.py</url>
+          <line>227</line>
+          <option name="timeStamp" value="45" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -564,7 +566,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="45" />
+      <option name="time" value="46" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -576,7 +578,9 @@
           <folding>
             <element signature="e#0#11#0" expanded="true" />
             <element signature="e#1809#4223#0" expanded="false" />
+            <element signature="e#4255#5714#0" expanded="false" />
             <element signature="e#5986#6254#0" expanded="false" />
+            <element signature="e#6292#6570#0" expanded="false" />
             <element signature="e#6612#6856#0" expanded="false" />
           </folding>
         </state>
@@ -614,7 +618,9 @@
           <folding>
             <element signature="e#0#11#0" expanded="true" />
             <element signature="e#1809#4223#0" expanded="false" />
+            <element signature="e#4255#5714#0" expanded="false" />
             <element signature="e#5986#6254#0" expanded="false" />
+            <element signature="e#6292#6570#0" expanded="false" />
             <element signature="e#6612#6856#0" expanded="false" />
           </folding>
         </state>
@@ -644,7 +650,9 @@
           <folding>
             <element signature="e#0#11#0" expanded="true" />
             <element signature="e#1809#4223#0" expanded="false" />
+            <element signature="e#4255#5714#0" expanded="false" />
             <element signature="e#5986#6254#0" expanded="false" />
+            <element signature="e#6292#6570#0" expanded="false" />
             <element signature="e#6612#6856#0" expanded="false" />
           </folding>
         </state>
@@ -674,7 +682,9 @@
           <folding>
             <element signature="e#0#11#0" expanded="true" />
             <element signature="e#1809#4223#0" expanded="false" />
+            <element signature="e#4255#5714#0" expanded="false" />
             <element signature="e#5986#6254#0" expanded="false" />
+            <element signature="e#6292#6570#0" expanded="false" />
             <element signature="e#6612#6856#0" expanded="false" />
           </folding>
         </state>
@@ -704,7 +714,9 @@
           <folding>
             <element signature="e#0#11#0" expanded="true" />
             <element signature="e#1809#4223#0" expanded="false" />
+            <element signature="e#4255#5714#0" expanded="false" />
             <element signature="e#5986#6254#0" expanded="false" />
+            <element signature="e#6292#6570#0" expanded="false" />
             <element signature="e#6612#6856#0" expanded="false" />
           </folding>
         </state>
@@ -734,7 +746,9 @@
           <folding>
             <element signature="e#0#11#0" expanded="true" />
             <element signature="e#1809#4223#0" expanded="false" />
+            <element signature="e#4255#5714#0" expanded="false" />
             <element signature="e#5986#6254#0" expanded="false" />
+            <element signature="e#6292#6570#0" expanded="false" />
             <element signature="e#6612#6856#0" expanded="false" />
           </folding>
         </state>
@@ -764,7 +778,9 @@
           <folding>
             <element signature="e#0#11#0" expanded="true" />
             <element signature="e#1809#4223#0" expanded="false" />
+            <element signature="e#4255#5714#0" expanded="false" />
             <element signature="e#5986#6254#0" expanded="false" />
+            <element signature="e#6292#6570#0" expanded="false" />
             <element signature="e#6612#6856#0" expanded="false" />
           </folding>
         </state>
@@ -801,7 +817,9 @@
           <folding>
             <element signature="e#0#11#0" expanded="true" />
             <element signature="e#1809#4223#0" expanded="false" />
+            <element signature="e#4255#5714#0" expanded="false" />
             <element signature="e#5986#6254#0" expanded="false" />
+            <element signature="e#6292#6570#0" expanded="false" />
             <element signature="e#6612#6856#0" expanded="false" />
           </folding>
         </state>
@@ -889,19 +907,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/softwareprocess/dispatch.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="750">
-          <caret line="243" column="0" lean-forward="false" selection-start-line="243" selection-start-column="0" selection-end-line="243" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-            <element signature="e#1809#4223#0" expanded="false" />
-            <element signature="e#5986#6254#0" expanded="false" />
-            <element signature="e#6612#6856#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Python27/Lib/unittest/case.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -912,10 +917,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/dispatchTest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="351" column="97" lean-forward="false" selection-start-line="351" selection-start-column="97" selection-end-line="351" selection-end-column="97" />
+        <state relative-caret-position="272">
+          <caret line="357" column="118" lean-forward="false" selection-start-line="357" selection-start-column="118" selection-end-line="357" selection-end-column="118" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/softwareprocess/dispatch.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="736">
+          <caret line="243" column="0" lean-forward="false" selection-start-line="243" selection-start-column="0" selection-end-line="243" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#1809#4223#0" expanded="false" />
+            <element signature="e#4255#5714#0" expanded="false" />
+            <element signature="e#5986#6254#0" expanded="false" />
+            <element signature="e#6292#6570#0" expanded="false" />
+            <element signature="e#6612#6856#0" expanded="false" />
           </folding>
         </state>
       </provider>

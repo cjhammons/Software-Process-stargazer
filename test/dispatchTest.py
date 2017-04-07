@@ -355,7 +355,7 @@ class DispatchTest(unittest.TestCase):
     def test300_101_Success_CalculationMissingDateAndTime(self):
         result = d.predict({'op': 'predict', 'body': 'Betelgeuse'})
         self.assert_('error' not in result)
-        self.assertEqual(result['long'], '270d59')
+        self.assertAlmostEqual(d.degreeToDecimal(result['long']), d.degreeToDecimal('270d59.6'), places=None, delta=1)
         self.assertEqual(result['lat'], '7d24.3')
 
 #Sad Path
