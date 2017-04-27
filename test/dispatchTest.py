@@ -627,3 +627,4 @@ class DispatchTest(unittest.TestCase):
                                   'assumedLat': '-53d38.4',
                                   'assumedLong': '361d0.0'})
         self.assertEqual(result['error'], dispatch.ERROR_INVALID_ASSUMEDLONG, 'assumedLong high bound check failed')
+
