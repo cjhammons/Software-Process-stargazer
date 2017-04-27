@@ -20,6 +20,12 @@ ERROR_INVALID_TIME = 'invalid time'
 ERROR_INVALID_DATE = 'invalid date'
 ERROR_STAR_NOT_IN_CATALOGUE = 'star not in catalog'
 ERROR_LAT_LON_INCLUDED = 'lat or long cannot be included'
+ERROR_INVALID_LAT = 'invalid lat'
+ERROR_INVALID_LONG = 'invalid long'
+ERROR_INVALID_ALTITUDE = 'invalid altitude'
+ERROR_INVALID_ASSUMEDLAT = 'invalid assumedLat'
+ERROR_INVALID_ASSUMEDLONG = 'invalid assumedLong'
+
 
 def dispatch(values=None):
 

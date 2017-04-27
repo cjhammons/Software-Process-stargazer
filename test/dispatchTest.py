@@ -2,6 +2,7 @@ import unittest
 import softwareprocess.dispatch as dispatch
 import softwareprocess.adjust as adjust
 import softwareprocess.predict as predict
+import softwareprocess.correct as correct
 
 class DispatchTest(unittest.TestCase):
 
@@ -390,3 +391,239 @@ class DispatchTest(unittest.TestCase):
         result = predict.predict({'op': 'predict', 'body': 'asdf', 'date': '2016-01-17', 'time': '03:15:42', 'long': '7d24.3'})
         self.assert_('error' in result)
         self.assertEqual(result['error'], dispatch.ERROR_LAT_LON_INCLUDED)
+
+#400 correct
+# Desired level of confidence: boundary value analysis
+#       inputs: valies -? dictionary of key values, passed from dispatch
+#       outputs: dictionary of params and result of prediction
+# Happy Path Analysis:
+#       lat:            low value           > -90d0.0
+#                       nom value           = 16d32.3
+#                       high value          < 90d0.0
+#       long:           low value           > 0d0.0
+#                       nom value           = 95d41.6
+#                       high value          < 360d0.0
+#       altitude:       low value           > 0d0.0
+#                       nom value           = 13d42.3
+#                       high value          < 90d0.0
+#       assumedLat:     low value           > -90d0.0
+#                       nom value           = -53d38.4
+#                       high value          < 90d0.0
+#       assumedLong:    low value           > -90d0.0
+#                       nom value           = 74d35.3
+#                       high value          < 360d0.0
+#       output:         returns the values for the corrected distance and corrected azimuth
+#
+# Sad Path Analysis:
+#       lat:            low violation       -91d0.0
+#                       high violation      91d0.0
+#                       missing value
+#                       bad format          64f
+#       long:           low violation       -1d0.0
+#                       high violation      361d0.0
+#                       missing value
+#                       bad format          56re
+#       altitude        low violation       -1d0.0
+#                       high violation      91d0.0
+#                       missing value
+#                       bad format          56re
+#       assumedLat:     low violation       -91d0.0
+#                       high violation      91d0.0
+#                       missing value
+#                       bad format          64f
+#       assumedLong:    low violation       -1d0.0
+#                       high violation      361d0.0
+#                       missing value
+#                       bad format          64f
+
+#Happy path
+    def test400_001_Success_Lowbound(self):
+        result = correct.correct({'op':'correct',
+                                  'lat':'-89d0.0',
+                                  'long':'1d0.0',
+                                  'altitude':'1d0.0',
+                                  'assumedLat':'-89d0.0',
+                                  'assumedLong':'1d0.0'})
+        self.assert_('error' not in result)
+
+    def test400_002_Success_Highbound(self):
+        result = correct.correct({'op': 'correct',
+                                  'lat': '89d0.0',
+                                  'long': '359d0.0',
+                                  'altitude': '89d0.0',
+                                  'assumedLat': '89d0.0',
+                                  'assumedLong': '359d0.0'})
+        self.assert_('error' not in result)
+
+    def test400_003_Success_calculation(self):
+        result = correct.correct({'op': 'correct',
+                                  'lat': '16d32.3',
+                                  'long': '95d41.6',
+                                  'altitude': '13d42.3',
+                                  'assumedLat': '-53d38.4',
+                                  'assumedLong': '74d35.3'})
+        self.assert_('error' not in result, 'Error was returned')
+        self.assert_('correctedDistance' in result, 'No correctedDistance')
+        self.assert_('correctedAzimuth' in result, 'No correctedAzimuth')
+        self.assertEqual(result['correctedDistance'], 3950, 'Corrected Distance incorrect')
+        self.assertEqual(result['correctedAzimuth'], '164d42.9', 'Corrected Azimuth incorrect')
+
+#Sad path
+    def test400_101_error_missingValues(self):
+        result = correct.correct({'op': 'correct',
+                                  'long': '95d41.6',
+                                  'altitude': '13d42.3',
+                                  'assumedLat': '-53d38.4',
+                                  'assumedLong': '74d35.3'})
+        self.assertEqual(result['error'], dispatch.ERROR_MANDATORY_INFO_MISSING, 'not error for missing lat')
+
+        result = correct.correct({'op': 'correct',
+                                  'lat': '16d32.3',
+                                  'altitude': '13d42.3',
+                                  'assumedLat': '-53d38.4',
+                                  'assumedLong': '74d35.3'})
+        self.assertEqual(result['error'], dispatch.ERROR_MANDATORY_INFO_MISSING, 'not error for missing long')
+
+        result = correct.correct({'op': 'correct',
+                                  'lat': '16d32.3',
+                                  'long': '95d41.6',
+                                  'assumedLat': '-53d38.4',
+                                  'assumedLong': '74d35.3'})
+        self.assertEqual(result['error'], dispatch.ERROR_MANDATORY_INFO_MISSING, 'not error for missing altitude')
+
+        result = correct.correct({'op': 'correct',
+                                  'lat': '16d32.3',
+                                  'long': '95d41.6',
+                                  'altitude': '13d42.3',
+                                  'assumedLong': '74d35.3'})
+        self.assertEqual(result['error'], dispatch.ERROR_MANDATORY_INFO_MISSING, 'not error for missing assumedLat')
+
+        result = correct.correct({'op': 'correct',
+                                  'lat': '16d32.3',
+                                  'long': '95d41.6',
+                                  'altitude': '13d42.3',
+                                  'assumedLat': '-53d38.4'})
+        self.assertEqual(result['error'], dispatch.ERROR_MANDATORY_INFO_MISSING, 'not error for missing assumedLong')
+
+    def test400_102_error_badFormat(self):
+        result = correct.correct({'op': 'correct',
+                                  'lat': '12.3',
+                                  'long': '95d41.6',
+                                  'altitude': '13d42.3',
+                                  'assumedLat': '-53d38.4',
+                                  'assumedLong': '74d35.3'})
+        self.assertEqual(result['error'], dispatch.ERROR_INVALID_LAT, 'Lat bad format check failed')
+
+        result = correct.correct({'op': 'correct',
+                                  'lat': '16d32.3',
+                                  'long': '941.6',
+                                  'altitude': '13d42.3',
+                                  'assumedLat': '-53d38.4',
+                                  'assumedLong': '74d35.3'})
+        self.assertEqual(result['error'], dispatch.ERROR_INVALID_LONG, 'Long bad format check failed')
+
+        result = correct.correct({'op': 'correct',
+                                  'lat': '16d32.3',
+                                  'long': '95d41.6',
+                                  'altitude': '1.3',
+                                  'assumedLat': '-53d38.4',
+                                  'assumedLong': '74d35.3'})
+        self.assertEqual(result['error'], dispatch.ERROR_INVALID_ALTITUDE, 'Altitude bad format check failed')
+
+        result = correct.correct({'op': 'correct',
+                                  'lat': '16d32.3',
+                                  'long': '95d41.6',
+                                  'altitude': '13d42.3',
+                                  'assumedLat': '-5',
+                                  'assumedLong': '74d35.3'})
+        self.assertEqual(result['error'], dispatch.ERROR_INVALID_ASSUMEDLAT, 'assumedLat bad format check failed')
+
+        result = correct.correct({'op': 'correct',
+                                  'lat': '16d32.3',
+                                  'long': '95d41.6',
+                                  'altitude': '13d42.3',
+                                  'assumedLat': '-53d38.4',
+                                  'assumedLong': '35.3'})
+        self.assertEqual(result['error'], dispatch.ERROR_INVALID_ASSUMEDLONG, 'assumedLong bad format check failed')
+
+    def test400_103_error_lowboundViolation(self):
+        result = correct.correct({'op': 'correct',
+                                  'lat': '-91d0.0',
+                                  'long': '95d41.6',
+                                  'altitude': '13d42.3',
+                                  'assumedLat': '-53d38.4',
+                                  'assumedLong': '74d35.3'})
+        self.assertEqual(result['error'], dispatch.ERROR_INVALID_LAT, 'Lat low bound check failed')
+
+        result = correct.correct({'op': 'correct',
+                                  'lat': '16d32.3',
+                                  'long': '-1d0.0',
+                                  'altitude': '13d42.3',
+                                  'assumedLat': '-53d38.4',
+                                  'assumedLong': '74d35.3'})
+        self.assertEqual(result['error'], dispatch.ERROR_INVALID_LONG, 'Long low bound check failed')
+
+        result = correct.correct({'op': 'correct',
+                                  'lat': '16d32.3',
+                                  'long': '95d41.6',
+                                  'altitude': '-1d0.0',
+                                  'assumedLat': '-53d38.4',
+                                  'assumedLong': '74d35.3'})
+        self.assertEqual(result['error'], dispatch.ERROR_INVALID_ALTITUDE, 'Altitude low bound check failed')
+
+        result = correct.correct({'op': 'correct',
+                                  'lat': '16d32.3',
+                                  'long': '95d41.6',
+                                  'altitude': '13d42.3',
+                                  'assumedLat': '-91d0.0',
+                                  'assumedLong': '74d35.3'})
+        self.assertEqual(result['error'], dispatch.ERROR_INVALID_ASSUMEDLAT, 'assumedLat low bound check failed')
+
+        result = correct.correct({'op': 'correct',
+                                  'lat': '16d32.3',
+                                  'long': '95d41.6',
+                                  'altitude': '13d42.3',
+                                  'assumedLat': '-53d38.4',
+                                  'assumedLong': '-1d0.0'})
+        self.assertEqual(result['error'], dispatch.ERROR_INVALID_ASSUMEDLONG, 'assumedLong low bound check failed')
+
+    def test400_103_error_highboundViolation(self):
+        result = correct.correct({'op': 'correct',
+                                  'lat': '91d0.0',
+                                  'long': '95d41.6',
+                                  'altitude': '13d42.3',
+                                  'assumedLat': '-53d38.4',
+                                  'assumedLong': '74d35.3'})
+        self.assertEqual(result['error'], dispatch.ERROR_INVALID_LAT, 'Lat high bound check failed')
+
+        result = correct.correct({'op': 'correct',
+                                  'lat': '16d32.3',
+                                  'long': '361d0.0',
+                                  'altitude': '13d42.3',
+                                  'assumedLat': '-53d38.4',
+                                  'assumedLong': '74d35.3'})
+        self.assertEqual(result['error'], dispatch.ERROR_INVALID_LONG, 'Long high bound check failed')
+
+        result = correct.correct({'op': 'correct',
+                                  'lat': '16d32.3',
+                                  'long': '95d41.6',
+                                  'altitude': '91d0.0',
+                                  'assumedLat': '-53d38.4',
+                                  'assumedLong': '74d35.3'})
+        self.assertEqual(result['error'], dispatch.ERROR_INVALID_ALTITUDE, 'Altitude high bound check failed')
+
+        result = correct.correct({'op': 'correct',
+                                  'lat': '16d32.3',
+                                  'long': '95d41.6',
+                                  'altitude': '13d42.3',
+                                  'assumedLat': '91d0.0',
+                                  'assumedLong': '74d35.3'})
+        self.assertEqual(result['error'], dispatch.ERROR_INVALID_ASSUMEDLAT, 'assumedLat high bound check failed')
+
+        result = correct.correct({'op': 'correct',
+                                  'lat': '16d32.3',
+                                  'long': '95d41.6',
+                                  'altitude': '13d42.3',
+                                  'assumedLat': '-53d38.4',
+                                  'assumedLong': '361d0.0'})
+        self.assertEqual(result['error'], dispatch.ERROR_INVALID_ASSUMEDLONG, 'assumedLong high bound check failed')
