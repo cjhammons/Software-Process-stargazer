@@ -65,7 +65,7 @@ def correct(values=None):
     correctedAltitude = math.degrees(math.asin(intermediateDistance))
 
     #calcualte distance needed to move to make positions match
-    correctedDistance = altitude - correctedAltitude
+    correctedDistance = 60 * (altitude - correctedAltitude)
 
     #calculate azimuth
     correctedAzimuth =  math.acos((math.sin(lat) - (math.sin(assumedLat) *  intermediateDistance))
