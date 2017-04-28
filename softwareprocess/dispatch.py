@@ -78,7 +78,7 @@ def degreeToDecimal(degree=''):
     if (degree.startswith('-')):
         negative = True
     degSplit = degree.split('d')
-    deg = int(degSplit[0])
+    deg = abs(int(degSplit[0]))
     minute = float(degSplit[1])
     combined = deg + (minute / 60)
     if (negative):
