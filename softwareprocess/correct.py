@@ -62,7 +62,7 @@ def correct(values=None):
     intermediateDistance =  ((math.sin(lat) * math.sin(assumedLat))  + (math.cos(lat) * math.cos(assumedLat) * math.cos(LHA)))
 
     #calculate altitude adjustment
-    correctedAltitude = math.asin(intermediateDistance)
+    correctedAltitude = math.degrees(math.asin(intermediateDistance))
 
     #calcualte distance needed to move to make positions match
     correctedDistance = altitude - correctedAltitude
