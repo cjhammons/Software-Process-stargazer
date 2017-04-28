@@ -16,7 +16,7 @@ def correct(values=None):
         values['error'] = dispatch.ERROR_INVALID_LAT
         return values
 
-    lat = dispatch.degreeToDecimal(values['lat'])
+    lat = math.radians(dispatch.degreeToDecimal(values['lat']))
     if (lat <= math.radians(-90) or lat >= math.radians(90)):
         values['error'] = dispatch.ERROR_INVALID_LAT
 
