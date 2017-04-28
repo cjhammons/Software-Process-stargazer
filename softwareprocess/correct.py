@@ -49,9 +49,12 @@ def correct(values=None):
 
     #check assumedLong
     if ('d' not in values['assumedLong']):
-        values['error'] = dispatch.ERROR_INVALID_LAT
+        values['error'] = dispatch.ERROR_INVALID_ASSUMEDLONG
         return values
     assumedLong = dispatch.degreeToDecimal(values['assumedLong'])
+    if (assumedLong <= 0 or assumedLong >= 360):
+        values['error'] = dispatch.ERROR_INVALID_ASSUMEDLONG
+        return values
 
     #Local hour angle
     LHA = long + assumedLong

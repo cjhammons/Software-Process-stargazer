@@ -409,7 +409,7 @@ class DispatchTest(unittest.TestCase):
 #       assumedLat:     low value           > -90d0.0
 #                       nom value           = -53d38.4
 #                       high value          < 90d0.0
-#       assumedLong:    low value           > -90d0.0
+#       assumedLong:    low value           > 0d0.0
 #                       nom value           = 74d35.3
 #                       high value          < 360d0.0
 #       output:         returns the values for the corrected distance and corrected azimuth
