@@ -25,7 +25,7 @@ def correct(values=None):
         values['error'] = dispatch.ERROR_INVALID_LONG
         return values
     long = math.radians(dispatch.degreeToDecimal(values['long']))
-    if (long <= 0 or long >= math.radians(360))6:
+    if (long <= 0 or long >= math.radians(360)):
         values['error'] = dispatch.ERROR_INVALID_LONG
         return values
 
@@ -34,7 +34,7 @@ def correct(values=None):
         values['error'] = dispatch.ERROR_INVALID_ALTITUDE
         return values
     altitude = math.radians(dispatch.degreeToDecimal(values['altitude']))
-    if (altitude <= 0 or altitude >= 90):
+    if (altitude <= math.radians(0) or altitude >= math.radians(90)):
         values['error'] = dispatch.ERROR_INVALID_ALTITUDE
         return values
 
@@ -43,7 +43,7 @@ def correct(values=None):
         values['error'] = dispatch.ERROR_INVALID_ASSUMEDLAT
         return values
     assumedLat = math.radians(dispatch.degreeToDecimal(values['assumedLat']))
-    if (assumedLat <= -90 or assumedLat >= 90):
+    if (assumedLat <= math.radians(-90) or assumedLat >= math.radians(90)):
         values['error'] = dispatch.ERROR_INVALID_ASSUMEDLAT
         return values
 
@@ -52,7 +52,7 @@ def correct(values=None):
         values['error'] = dispatch.ERROR_INVALID_ASSUMEDLONG
         return values
     assumedLong = math.radians(dispatch.degreeToDecimal(values['assumedLong']))
-    if (assumedLong <= 0 or assumedLong >= 360):
+    if (assumedLong <= math.radians(0) or assumedLong >= math.radians(360)):
         values['error'] = dispatch.ERROR_INVALID_ASSUMEDLONG
         return values
 
