@@ -465,7 +465,7 @@ class DispatchTest(unittest.TestCase):
         self.assert_('error' not in result, 'Error was returned')
         self.assert_('correctedDistance' in result, 'No correctedDistance')
         self.assert_('correctedAzimuth' in result, 'No correctedAzimuth')
-        self.assertEqual(result['correctedDistance'], 3950, 'Corrected Distance incorrect')
+        self.assertAlmostEqual(result['correctedDistance'], 3950, 0,  'Corrected Distance incorrect')
         self.assertEqual(result['correctedAzimuth'], '164d42.9', 'Corrected Azimuth incorrect')
 
 #Sad path

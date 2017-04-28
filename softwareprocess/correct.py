@@ -33,8 +33,8 @@ def correct(values=None):
     if ('d' not in values['altitude']):
         values['error'] = dispatch.ERROR_INVALID_ALTITUDE
         return values
-    altitude = math.radians(dispatch.degreeToDecimal(values['altitude']))
-    if (altitude <= math.radians(0) or altitude >= math.radians(90)):
+    altitude = dispatch.degreeToDecimal(values['altitude'])
+    if (altitude <= 0 or altitude >= 90):
         values['error'] = dispatch.ERROR_INVALID_ALTITUDE
         return values
 
