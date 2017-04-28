@@ -59,7 +59,7 @@ def correct(values=None):
     #Local hour angle
     LHA = long + assumedLong
 
-    intermediateDistance = ((math.sin(lat) * math.sin(assumedLat)) + (math.cos(lat) * math.cos(assumedLat) * math.cos(LHA)))
+    intermediateDistance =  ((math.sin(lat) * math.sin(assumedLat))  + (math.cos(lat) * math.cos(assumedLat) * math.cos(LHA)))
 
     #calculate altitude adjustment
     correctedAltitude = math.asin(intermediateDistance)
@@ -68,14 +68,14 @@ def correct(values=None):
     correctedDistance = altitude - correctedAltitude
 
     #calculate azimuth
-    correctedAzimuth = math.acos((math.sin(lat) -  math.sin(assumedLat) * intermediateDistance)) \
-                       / (math.cos(assumedLat) * math.cos(math.asin(intermediateDistance)))
+    correctedAzimuth =  math.acos((math.sin(lat) - (math.sin(assumedLat) *  intermediateDistance))
+                                  / (math.cos(assumedLat) * math.cos(math.asin(intermediateDistance))))
+
 
     #convert to correct format
     azimuthFormat = dispatch.decimalToDegree(correctedAzimuth)
-    distanceFormat = dispatch.decimalToDegree(correctedDistance)
 
-    values['correctedDistance'] = distanceFormat
+    values['correctedDistance'] = correctedDistance
     values['correctedAzimuth'] = azimuthFormat
 
     return values
