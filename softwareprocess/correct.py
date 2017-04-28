@@ -17,15 +17,15 @@ def correct(values=None):
         return values
 
     lat = dispatch.degreeToDecimal(values['lat'])
-    if (lat <= -90 or lat >= 90):
+    if (lat <= math.radians(-90) or lat >= math.radians(90)):
         values['error'] = dispatch.ERROR_INVALID_LAT
 
     #check long
     if ('d' not in values['long']):
         values['error'] = dispatch.ERROR_INVALID_LONG
         return values
-    long = dispatch.degreeToDecimal(values['long'])
-    if (long <= 0 or long >= 360):
+    long = math.radians(dispatch.degreeToDecimal(values['long']))
+    if (long <= 0 or long >= math.radians(360))6:
         values['error'] = dispatch.ERROR_INVALID_LONG
         return values
 
@@ -33,7 +33,7 @@ def correct(values=None):
     if ('d' not in values['altitude']):
         values['error'] = dispatch.ERROR_INVALID_ALTITUDE
         return values
-    altitude = dispatch.degreeToDecimal(values['altitude'])
+    altitude = math.radians(dispatch.degreeToDecimal(values['altitude']))
     if (altitude <= 0 or altitude >= 90):
         values['error'] = dispatch.ERROR_INVALID_ALTITUDE
         return values
@@ -42,7 +42,7 @@ def correct(values=None):
     if ('d' not in values['assumedLat']):
         values['error'] = dispatch.ERROR_INVALID_ASSUMEDLAT
         return values
-    assumedLat = dispatch.degreeToDecimal(values['assumedLat'])
+    assumedLat = math.radians(dispatch.degreeToDecimal(values['assumedLat']))
     if (assumedLat <= -90 or assumedLat >= 90):
         values['error'] = dispatch.ERROR_INVALID_ASSUMEDLAT
         return values
@@ -51,7 +51,7 @@ def correct(values=None):
     if ('d' not in values['assumedLong']):
         values['error'] = dispatch.ERROR_INVALID_ASSUMEDLONG
         return values
-    assumedLong = dispatch.degreeToDecimal(values['assumedLong'])
+    assumedLong = math.radians(dispatch.degreeToDecimal(values['assumedLong']))
     if (assumedLong <= 0 or assumedLong >= 360):
         values['error'] = dispatch.ERROR_INVALID_ASSUMEDLONG
         return values
@@ -73,7 +73,7 @@ def correct(values=None):
 
 
     #convert to correct format
-    azimuthFormat = dispatch.decimalToDegree(correctedAzimuth)
+    azimuthFormat = dispatch.decimalToDegree(math.degrees(correctedAzimuth))
 
     values['correctedDistance'] = correctedDistance
     values['correctedAzimuth'] = azimuthFormat
